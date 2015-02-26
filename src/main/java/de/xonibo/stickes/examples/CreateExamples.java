@@ -1,9 +1,10 @@
-package de.xonibo.stickes.awt;
+package de.xonibo.stickes.examples;
 
 import de.xonibo.stickes.StichData;
 import de.xonibo.stickes.assemble.DragonCurve;
 import de.xonibo.stickes.assemble.Knaeuel;
 import de.xonibo.stickes.assemble.KochSnowFlake;
+import de.xonibo.stickes.awt.Examples;
 import de.xonibo.stickes.format.ImagePNG;
 import de.xonibo.stickes.format.Tajima;
 import de.xonibo.stickes.stiches.Plain;
