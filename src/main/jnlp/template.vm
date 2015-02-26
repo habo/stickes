@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp
+    spec="$jnlpspec"
+    codebase="http://xonibo.de/stickes/"
+    href="$outputFile">
+  <information>
+    <title>$project.Name</title>
+    <vendor>xonibo</vendor>
+    <homepage href="http://xonibo.de/stickes/"/>
+    <description>java embroidery software</description>
+    <offline-allowed/>
+  </information>
+  <security>
+     <all-permissions/>
+  </security>
+  <resources>
+    <j2se version="$j2seVersion"/>
+     $dependencies
+  </resources>
+  <application-desc main-class="$mainClass"/>
+</jnlp>

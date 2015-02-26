@@ -1,0 +1,59 @@
+[ ] alternative zu AWT recherchieren
+[x] AWT GUI Anzeige der StichData
+[x] AWT GUI skalierung
+[x] AWT GUI laden + speichern
+[/] AWT GUI "play"
+[x] AWT GUI Dateieinfos
+[ ] AWT GUI Dateiinfos prüfen mit Anzeige an der Maschine
+[N] AWT GUI transparentes Bild zum selbstdigitalisieren einbinden
+[x] AWT GUI Pfade speichern
+[x] AWT GUI Pfade speichern als Object
+[x] AWT GUI Pfade speichern als Java Source
+[/] AWT GUI fix Pfade zeichnen Versatz -> skalierungsproblem
+[ ] AWT GUI Farbtabelle?
+[ ] AWT GUI ggf. SVG Importer
+[ ] AWT GUI History - Vor/Zurück mind 10 Schritte
+[ ] AWT GUI Options für Examples und anderes (Choice, List, TabbedPanes...)
+[ ] AWT GUI Options für Examples (Slider für sofortige Änderungen)
+[ ] AWT GUI tests
+[ ] viel mehr tests!!!
+[x] fix bug dst Farbverschiebung
+[ ] fix bug dst Zwischenjumps
+[ ] fix bug dst Startpunkt soll Center sein
+[x] fix bug dst Spiegelung um X Achse
+[/] fix bug dst shape-to-Stichdata Fehlende Sprünge
+[/] automatische Zwischenjumps
+[x] .pes (aus pec) laden implementation
+[/] .pes (aus pec) speichern implementation
+[x] .dst laden + speichern implementation
+[x] fix bug .dst Stichweite ist begrenzt, Exception werfen oder jumps umsetzen
+[ ] .dst Farbdatei lesen + speichern implementation
+[ ] fix .dst Datei ohne Stiche resettet Maschine
+[ ] Recherche: kreuzstich oder wie kann man ein bild digitalisieren?
+[x] programmatisch: path programmieren
+[x] programmatisch: path programmieren mit fraktalen
+[ ] programmatisch: path feste stichweite einstellen -> Options
+[ ] programmatisch: flächen programmieren
+[/] programmatisch: text to stiches programmieren
+[ ] programmatisch: text font alternativen, siehe qcad fonts in pycam/tags/release-0.5/share/fonts
+[x] stiche programmieren -> in SS testen
+[x] stiche programmieren -> in Maschine testen
+[ ] simple img converter -> kreuzstich
+[ ] Examples: Sirpinsky Dreieck
+[ ] Center Start (für prof. Stickmaschinen)
+[ ] ggf. stich flächen zusammenfassen
+[ ] ggf. Interface StickesSource durch codemodel ersetzen
+[ ] ggf. Farben reduzieren
+[ ] ggf. selbst rastern und skalieren?
+[ ] ggf. WebGUI?
+[ ] github? vorher externe quellen prüfen!
+[ ] QR Code und Barcodes?
+[ ] weitere formate?
+
+Legende
+[ ] sollte gemacht werden
+[x] erledigt
+[/] teilweise erledigt
+[N] Wird nicht Umgesetzt, da bessere Lösung existiert
+
+

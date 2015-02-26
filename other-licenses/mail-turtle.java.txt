@@ -1,0 +1,9 @@
+From: Kevin Wayne
+To: habo@dingfabrik.de
+Date: 11:32 24.02.2015
+
+[...]
+This email releases Turtle.java under GPLv3. Sounds like an interesting application. Would you mind giving us a 1 paragraph description or point us to a link? Thanks.
+
+Best,
+Kevin
