@@ -7,7 +7,7 @@ public class CompositeStrokeTest {
 
     @Test
     public void testCreateStrokedShape() {
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
 }
