@@ -3,7 +3,6 @@ package de.xonibo.stickes.examples;
 import de.xonibo.stickes.Stich;
 import de.xonibo.stickes.StichData;
 import de.xonibo.stickes.StichType;
-import de.xonibo.stickes.awt.Visual;
 import de.xonibo.stickes.stiches.Plain;
 import de.xonibo.stickes.stiches.Satin;
 import de.xonibo.stickes.stiches.Text;
@@ -14,9 +13,12 @@ import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.RoundRectangle2D;
-import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static org.testng.Assert.fail;
+import org.testng.annotations.Test;
 
-public class VisualMultiStichAssemble {
+public class MultiStichAssembleTest {
 
     public static Shape xonibo(int x, int y, int d) {
         Area shape = new Area(new Ellipse2D.Double(x + d / 2, y - d / 2, d, d));
@@ -28,16 +30,8 @@ public class VisualMultiStichAssemble {
         return new RoundRectangle2D.Double(x1, y1, h, w, warc, harc);
     }
 
-    public static void main(String[] args) throws IOException {
+    public static StichData createStichDataExample() {
         StichData sd = new StichData();
-        createStichDataExample(sd);
-
-        Visual app = new Visual();
-        app.load(sd);
-        app.initFrame("exampleStichassemle", 1);
-    }
-
-    public static void createStichDataExample(StichData sd) {
         int y = 30;
         float wavelength = 1;
         sd.addAll(plainCircleTest(50, y, 40));
@@ -81,9 +75,10 @@ public class VisualMultiStichAssemble {
         sd.addAll(text(50, y, "Hello World"));
         sd.addAll(new Plain(xonibo(350, y, 50)).toStichData());
         sd.add(new Stich(StichType.EOF));
+        return sd;
     }
 
-    static public Shape line(int x1, int y1, int x2, int y2) {
+    public static Shape line(int x1, int y1, int x2, int y2) {
         return new Line2D.Double(x1, y1, x2, y2);
     }
 
@@ -112,7 +107,14 @@ public class VisualMultiStichAssemble {
         return o.toStichData();
     }
 
-    private VisualMultiStichAssemble() {
+    @Test
+    public MultiStichAssembleTest() {
+        StichData sd = createStichDataExample();
+        try {
+            CreateExamples.saveDstAndPNG("multistichassemble", sd);
+        } catch (Exception ex) {
+            fail("unexpected exception", ex);
+        }
     }
 
 }

@@ -10,16 +10,20 @@ import de.xonibo.stickes.format.Tajima;
 import de.xonibo.stickes.stiches.Plain;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.logging.Logger;
 
 public class CreateExamples {
 
-    private static void saveDstAndPNG(String s, StichData sd) throws Exception {
+    public static void saveDstAndPNG(String s, StichData sd) throws Exception {
         final String path = "target/output/examples";
         final Tajima t = new Tajima();
         new File(path).mkdirs();
         final File dst = new File(path, s + ".dst");
+        Logger.getGlobal().info(String.format("write %s", dst.getName()));
         t.save(dst, sd);
-        new ImagePNG().save(new FileOutputStream(new File(path, s + ".png")), t.load(dst));
+        final File png = new File(path, s + ".png");
+        Logger.getGlobal().info(String.format("write %s", png.getName()));
+        new ImagePNG().save(new FileOutputStream(png), t.load(dst));
     }
 
     public static void main(String[] a) throws Exception {

@@ -3,15 +3,23 @@ package de.xonibo.stickes.examples;
 import de.xonibo.stickes.Stich;
 import de.xonibo.stickes.StichData;
 import de.xonibo.stickes.StichType;
+import de.xonibo.stickes.TestingData;
+import de.xonibo.stickes.format.ImagePNG;
+import de.xonibo.stickes.format.Tajima;
 import de.xonibo.stickes.stiches.Plain;
 import de.xonibo.stickes.stiches.Satin;
-import de.xonibo.stickes.awt.Visual;
 import java.awt.geom.GeneralPath;
-import java.io.IOException;
+import java.io.File;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static org.testng.Assert.*;
+import org.testng.annotations.Test;
 
-public class VisualPath {
+public class PathTest {
 
-    public static void main(String[] args) throws IOException {
+    @Test
+    public PathTest() {
         StichData sd = new StichData();
         GeneralPath result1 = new GeneralPath();
         result1.moveTo(200, 300);
@@ -23,16 +31,17 @@ public class VisualPath {
         result2.moveTo(150, 100);
         result2.lineTo(250, 200);
 
-        sd.addAll(new Satin(result1,2, 20).toStichData());
+        sd.addAll(new Satin(result1, 2, 20).toStichData());
         sd.addAll(new Plain(result2).toStichData());
 
         sd.add(new Stich(StichType.EOF));
 
-        Visual app = new Visual();
-        app.load(sd);
-        app.initFrame("exampleGeneralPath", 1);
+        try {
+            CreateExamples.saveDstAndPNG("path", sd);
+        } catch (Exception ex) {
+            fail("unexpected exception", ex);
+        }
+
     }
 
-    private VisualPath() {
-    }
 }

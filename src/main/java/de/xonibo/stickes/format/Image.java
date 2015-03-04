@@ -5,6 +5,8 @@ import de.xonibo.stickes.awt.Painter;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.OutputStream;
 import javax.imageio.ImageIO;
 
@@ -13,7 +15,6 @@ public abstract class Image implements StichFileSave {
     private final String formatname;
     private Color backgroundColor = Color.LIGHT_GRAY;
 
-    
     public void setBackgroundColor(Color backgroundColor) {
         this.backgroundColor = backgroundColor;
     }
@@ -32,6 +33,10 @@ public abstract class Image implements StichFileSave {
         Painter pain = new Painter();
         pain.drawStichData(g, norm, 0, 0, 5, norm.size(), 1);
         ImageIO.write(im, formatname.toUpperCase(), out);
+    }
+
+    public void save(File f, StichData data) throws Exception {
+        save(new FileOutputStream(f), data);
     }
 
     @Override
