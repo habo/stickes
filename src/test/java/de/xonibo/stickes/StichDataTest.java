@@ -49,4 +49,40 @@ public class StichDataTest {
         sd.add(new Stich(13, 44, true));
         assertEquals(sd.getJumps(), 2);
     }
+
+    @Test
+    public void testGetMax() {
+        {
+            StichData sd = new StichData();
+            sd.add(new Stich(1, 2));
+            sd.add(new Stich(3, 4));
+            assertEquals(sd.getMaxCornerX(), 3);
+            assertEquals(sd.getMaxCornerY(), 4);
+        }
+        {
+            StichData sd = new StichData();
+            sd.add(new Stich(-1, 2));
+            sd.add(new Stich(3, -4));
+            assertEquals(sd.getMaxCornerX(), 3);
+            assertEquals(sd.getMaxCornerY(), 2);
+        }
+    }
+
+    @Test
+    public void testGetInit() {
+        {
+            StichData sd = new StichData();
+            sd.add(new Stich(1, 2));
+            sd.add(new Stich(3, 4));
+            assertEquals(sd.getInitCornerX(), 0);
+            assertEquals(sd.getInitCornerY(), 0);
+        }
+        {
+            StichData sd = new StichData();
+            sd.add(new Stich(-1, 2));
+            sd.add(new Stich(3, -4));
+            assertEquals(sd.getInitCornerX(), -1);
+            assertEquals(sd.getInitCornerY(), -4);
+        }
+    }
 }
