@@ -14,8 +14,6 @@ import de.xonibo.stickes.assemble.Quadratrosette;
 import de.xonibo.stickes.assemble.Siebenkreis;
 import de.xonibo.stickes.assemble.Sternvieleck;
 import de.xonibo.stickes.assemble.Zacken;
-import de.xonibo.stickes.format.ImagePNG;
-import de.xonibo.stickes.format.Tajima;
 import de.xonibo.stickes.stiches.BasicShape;
 import de.xonibo.stickes.stiches.Plain;
 import de.xonibo.stickes.stiches.Satin;
@@ -30,9 +28,6 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -165,7 +160,7 @@ public class Examples implements ActionListener {
                 case HilbertCurve:
                     return new Hilbert(5, 10).getPath();
                 case PythTreeCurve:
-                    return insertStartPoint(new PythagorasTree(6, 100).getPath());
+                    return new PythagorasTree(6, 100).getPath();
                 case Quadratrosette:
                     return new Quadratrosette(5, 100).getPath();
                 case Siebenkreis:
@@ -175,7 +170,7 @@ public class Examples implements ActionListener {
                 case Knaeuel:
                     return new Knaeuel(720, 20, 4, 9).getPath();
                 case SternVieleck:
-                    return insertStartPoint(new Sternvieleck(150, 152).getPath());
+                    return new Sternvieleck(120, 152).getPath();
             }
             return null;
         }
@@ -296,16 +291,4 @@ public class Examples implements ActionListener {
         return o;
     }
 
-    public static Shape insertStartPoint(Shape shape) {
-        float[] c = new float[6];
-        shape.getPathIterator(null).currentSegment(c);
-        GeneralPath gp = new GeneralPath();
-        gp.append(new Line2D.Float(c[0], c[1], c[0] + 1, c[1] + 1), true);
-        gp.append(new Line2D.Float(c[0], c[1], c[0], c[1]), true);
-        gp.append(new Line2D.Float(c[0], c[1], c[0] + 1, c[1] + 1), true);
-        gp.append(new Line2D.Float(c[0], c[1], c[0], c[1]), true);
-        gp.append(new Line2D.Float(c[0], c[1], c[0] + 1, c[1] + 1), true);
-        gp.append(shape, true);
-        return gp;
-    }
 }

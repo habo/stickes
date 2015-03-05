@@ -3,16 +3,9 @@ package de.xonibo.stickes.examples;
 import de.xonibo.stickes.Stich;
 import de.xonibo.stickes.StichData;
 import de.xonibo.stickes.StichType;
-import de.xonibo.stickes.TestingData;
-import de.xonibo.stickes.format.ImagePNG;
-import de.xonibo.stickes.format.Tajima;
 import de.xonibo.stickes.stiches.Plain;
 import de.xonibo.stickes.stiches.Satin;
 import java.awt.geom.GeneralPath;
-import java.io.File;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import static org.testng.Assert.*;
 import org.testng.annotations.Test;
 

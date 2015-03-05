@@ -69,7 +69,7 @@ public class Painter implements ActionListener {
 
     public void drawStichData(Graphics g, StichData sd, int initx, int inity, int crosssize, int stichesCurrent, double scale) {
         g.setColor(stichColor.getCurrentColor());
-        Stich last = new Stich(0, 0);
+        Stich last = sd.get(0);
         for (int count = 0; count < sd.size(); count++) {
             Stich stich = sd.get(count);
             if (count > stichesCurrent) {

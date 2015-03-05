@@ -43,10 +43,6 @@ public class StichFile {
         return subTypes;
     }
 
-    public static void main(String[] args) throws ClassNotFoundException {
-        System.out.println(getLoadableClasses());
-    }
-
     public static Iterable<StichFileLoad> getLoadableFileFormats() {
         if (!loadableFormats.isEmpty()) {
             return loadableFormats;

@@ -89,7 +89,7 @@ public class Stich implements Serializable, StickesSource {
         if (isColorChange()) {
             return "CC";
         }
-        return "(x:" + x + ",y:" + y + "):" + isJump();
+        return "(x:" + x + ",y:" + y + "):" + type;
     }
 
     @Override
@@ -102,5 +102,11 @@ public class Stich implements Serializable, StickesSource {
             return "new Stich(StichType.EOF)";
         }
         return "new Stich(" + x + "," + y + "," + isJump() + ")";
+    }
+    
+     public boolean isOverRange(Stich other, int maxDistance) {
+        int dx = Math.abs(getX() - other.getX());
+        int dy = Math.abs(getY() - other.getY());
+        return dx > maxDistance || dy > maxDistance;
     }
 }

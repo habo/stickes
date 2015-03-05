@@ -6,7 +6,7 @@ public class Sternvieleck extends Turtle {
 
     public Sternvieleck() {
         super(0, 0, 0);
-        sternVieleck(200, 152);
+        sternVieleck(120, 152);
     }
 
     public Sternvieleck(int length, int winkel) {

@@ -83,7 +83,7 @@ public class TajimaTest {
         StichData sdout = new StichData();
         StichData sdin = assembledSavedAndLoadedStichData(sdout);
         assertEquals(sdin.size(), sdout.size());
-        assertEquals(sdin.getJumps(), 2);
+        assertEquals(sdin.getJumps(), 4);
         assertEquals(sdin.getColors().size(), 3);
 
     }
@@ -189,70 +189,7 @@ public class TajimaTest {
         assertTrue(true);
     }
 
-    @Test
-    public void checkFirstStich() {
-        StichData sd = new StichData();
-        sd.add(new Stich(100, 300));
-        t.checkFirstStich(sd);
-        Stich first = sd.get(0);
-        assertEquals(first.getX(), 50);
-        assertEquals(first.getY(), 150);
-    }
-
-    @Test
-    public void insertCenterStich() {
-        {
-            StichData sd = new StichData();
-            // startstich irgendwo
-            sd.add(new Stich(12, 32));
-            // irgendwo noch ein anderer stich, aber innerhalb der maximalwerte
-            sd.add(new Stich(10, 14));
-            // sollte einen stich am anfang einfügen, der mittig liegt
-            t.insertCenterStich(sd);
-            Stich first = sd.get(0);
-
-            // size 3, da kein stich weiterer stich hinzugefügt wurde
-            assertEquals(sd.size(), 3);
-            assertEquals(first.getX(), 6);
-            assertEquals(first.getY(), 16);
-        }
-        {
-            StichData sd = new StichData();
-            // startstich irgendwo
-            sd.add(new Stich(120, 320));
-            // irgendwo noch ein anderer stich, aber innerhalb der maximalwerte
-            sd.add(new Stich(101, 304));
-            // sollte einen stich am anfang einfügen, der mittig liegt
-            t.insertCenterStich(sd);
-            Stich first = sd.get(0);
-
-            // size 4, da ein intermediate benötigt wurde
-            assertEquals(sd.size(), 4);
-            assertEquals(first.getX(), 60);
-            assertEquals(first.getY(), 160);
-        }
-    }
-
-    @Test
-    public void isOverRange() {
-        final Stich first = new Stich(0, 0);
-        assertFalse(t.isOverRange(first, new Stich(0, 0)));
-        assertFalse(t.isOverRange(first, new Stich(40, 30)));
-        assertFalse(t.isOverRange(first, new Stich(120, 120)));
-        assertTrue(t.isOverRange(first, new Stich(150, 30)));
-        assertTrue(t.isOverRange(first, new Stich(40, 300)));
-
-        assertFalse(t.isOverRange(first, new Stich(-40, -70)));
-        assertTrue(t.isOverRange(first, new Stich(-40, -300)));
-    }
-
-    @Test
-    public void insertIntermediateStiches() {
-        final Stich first = new Stich(10, 10);
-        final Stich next = new Stich(400, 500);
-        StichData sd = t.insertIntermediateStiches(first, next);
-        assertEquals(sd.size(), 7);
-    }
+  
 
     private Shape getLineShape(int x, int y) {
         GeneralPath path = new GeneralPath();

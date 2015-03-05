@@ -13,8 +13,6 @@ import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.RoundRectangle2D;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import static org.testng.Assert.fail;
 import org.testng.annotations.Test;
 

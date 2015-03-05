@@ -22,35 +22,17 @@ public class Tajima implements StichFileLoad, StichFileSave {
     static byte[] STICHCOLORCHANGE = {0, 0, (byte) 0xC3};
     static int maxDistance = 121;
 
-    public void checkFirstStich(StichData data) {
-        Stich first = data.get(0);
-        if (!(first.getX() == 0 && first.getY() == 0)) {
-            insertCenterStich(data);
-        }
-    }
-
-    private boolean checkAllRange(StichData data) {
-        Stich previous = null;
-        for (Stich stich : data) {
-            if (previous != null && isOverRange(stich, previous)) {
-                return false;
-            }
-            previous = stich;
-        }
-        return true;
-    }
-
     @Override
     public void save(OutputStream out, StichData data) throws IOException, IllegalStateException {
-        checkFirstStich(data);
-        //checkAllRange(data);
+        data.addIntermediateStichesIfNessessary(maxDistance);
+
         String label = "";
         int stichcount = data.size();
         int colorcount = data.getColors().size() + 1;
         int maxXextend = data.getInitCornerX();
         int minXextend = 0; // NOSONAR
-        int maxYextend = 0;// NOSONAR
-        int minYextendI = 0;// NOSONAR
+        int maxYextend = data.getInitCornerY();
+        int minYextend = 0;// NOSONAR
         int needleEndPointX = 0; // NOSONAR
         int needleEndPointY = 0;// NOSONAR
         int previousfileneedleendpointX = 0;// NOSONAR
@@ -58,7 +40,7 @@ public class Tajima implements StichFileLoad, StichFileSave {
         // previousFile has asterix if single
         String previousFile = "******"; // NOSONAR
         String format = "LA:%16s\rST:%07d\rCO:%03d\r+X:%05d\r-X:%05d\r+Y:%05d\r-Y:%05d\rAX:-%5d\rAY:-%5d\rMX:+%5d\rMY:+%5d\rPD:%6s\r";
-        String text = String.format(format, label, stichcount, colorcount, maxXextend, minXextend, maxYextend, minYextendI, needleEndPointX, needleEndPointY, previousfileneedleendpointX, previousfileneedleendpointY, previousFile);
+        String text = String.format(format, label, stichcount, colorcount, maxXextend, minXextend, maxYextend, minYextend, needleEndPointX, needleEndPointY, previousfileneedleendpointX, previousfileneedleendpointY, previousFile);
         // 512 bytes leer
         out.write(text.getBytes());
         // end of data header
@@ -331,38 +313,8 @@ public class Tajima implements StichFileLoad, StichFileSave {
         return ".dst";
     }
 
-    public boolean isOverRange(Stich current, Stich last) {
-        int dx = Math.abs(current.getX() - last.getX());
-        int dy = Math.abs(current.getY() - last.getY());
-        if (dx > maxDistance || dy > maxDistance) {
-            return true;
-        }
-        return false;
-    }
-
     public void save(File f, StichData data) throws Exception {
         save(new FileOutputStream(f), data);
-    }
-
-    public void insertCenterStich(StichData data) {
-        // TODO prüfen ob erster Centerstich so einsetzbar ist und in auch anderen Formaten benötigt wird
-        Stich centerStich = new Stich(data.getMaxCornerX() / 2, data.getMaxCornerY() / 2, true);
-        data.add(0, centerStich);
-        Stich nextStich = data.get(1);
-        data.addAll(insertIntermediateStiches(centerStich, nextStich));
-    }
-
-    public StichData insertIntermediateStiches(Stich firstStich, Stich nextStich) {
-        StichData sd = new StichData();
-        if (isOverRange(firstStich, nextStich)) {
-            int cx = (firstStich.getX() + nextStich.getX()) / 2;
-            int cy = (firstStich.getY() + nextStich.getY()) / 2;
-            Stich s = new Stich(cx, cy, true);
-            sd.add(s);
-            sd.addAll(insertIntermediateStiches(firstStich, s));
-            sd.addAll(insertIntermediateStiches(s, nextStich));
-        }
-        return sd;
     }
 
 }

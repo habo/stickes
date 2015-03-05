@@ -30,7 +30,7 @@ public class StichData extends ArrayList<Stich> implements StickesSource {
         return sd;
     }
 
-    public StichData centerStart() {
+    public StichData insertCenterStichAtStart() {
         normalize();
         int x = getMaxCornerX() / 2;
         int y = getMaxCornerY() / 2;
@@ -112,6 +112,43 @@ public class StichData extends ArrayList<Stich> implements StickesSource {
         //TODO getClass().getConstructors()[0]
         return "new StichData()";
 
+    }
+
+    public boolean checkAllRange(int maxDistance) {
+        Stich previous = null;
+        for (Stich stich : this) {
+            if (previous != null && stich.isOverRange(previous, maxDistance)) {
+                return false;
+            }
+            previous = stich;
+        }
+        return true;
+    }
+
+    public void addIntermediateStichesIfNessessary(int maxDistance) {
+        int skip = 1;
+        if (get(size() - 1).isEOF()) {
+            skip++;
+        }
+        for (int i = size() - skip; i > 0; i--) {
+            Stich s = get(i - 1);
+            Stich n = get(i);
+            addAll(i, createIntermediateStiches(s, n, maxDistance));
+
+        }
+    }
+
+    static public StichData createIntermediateStiches(Stich firstStich, Stich lastStich, int maxDistance) {
+        StichData sd = new StichData();
+        if (firstStich.isOverRange(lastStich, maxDistance)) {
+            int cx = (firstStich.getX() + lastStich.getX()) / 2;
+            int cy = (firstStich.getY() + lastStich.getY()) / 2;
+            Stich newstich = new Stich(cx, cy, true);
+            sd.addAll(createIntermediateStiches(firstStich, newstich, maxDistance));
+            sd.add(newstich);
+            sd.addAll(createIntermediateStiches(newstich, lastStich, maxDistance));
+        }
+        return sd;
     }
 
 }
