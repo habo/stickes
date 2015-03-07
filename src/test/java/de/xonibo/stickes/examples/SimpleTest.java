@@ -25,9 +25,6 @@ public class SimpleTest {
         sd.addIntermediateStichesIfNessessary(52);
         assertEquals(sd.size(), 8);
         
-//        for (Stich s : sd) {
-//            System.out.println("stich: "+s);
-//        }
         try {
             CreateExamples.saveDstAndPNG("simple1", sd);
         } catch (Exception ex) {
