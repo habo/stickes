@@ -62,5 +62,9 @@ public class Turtle {
         y += step * Math.sin(Math.toRadians(angle));
         generalPath.lineTo(x, y);
     }
+    // move backward the given amount, with the pen down
+    public void back(double step) {
+        move(-step);
+    }
 
 }

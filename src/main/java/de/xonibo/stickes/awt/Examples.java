@@ -12,6 +12,7 @@ import de.xonibo.stickes.assemble.KochSnowFlake;
 import de.xonibo.stickes.assemble.PythagorasTree;
 import de.xonibo.stickes.assemble.Quadratrosette;
 import de.xonibo.stickes.assemble.Siebenkreis;
+import de.xonibo.stickes.assemble.SierpinskiTriangle;
 import de.xonibo.stickes.assemble.Sternvieleck;
 import de.xonibo.stickes.assemble.Zacken;
 import de.xonibo.stickes.stiches.BasicShape;
@@ -79,6 +80,7 @@ public class Examples implements ActionListener {
         SternVieleck,
         Knaeuel,
         ZackenCurve,
+        SierpinskiTriangle,
         Pentagram,
         Smile,
         Line,
@@ -91,6 +93,8 @@ public class Examples implements ActionListener {
                     return getSmileShape(150, 150, 150);
                 case Line:
                     return getLineShape(100, 100);
+                case SierpinskiTriangle:
+                    return new SierpinskiTriangle().getPath();
                 case KochSnowFlake:
                     int i = 3;
                     int length = 200;

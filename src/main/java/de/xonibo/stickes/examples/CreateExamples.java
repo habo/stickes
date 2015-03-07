@@ -4,6 +4,7 @@ import de.xonibo.stickes.StichData;
 import de.xonibo.stickes.assemble.DragonCurve;
 import de.xonibo.stickes.assemble.Knaeuel;
 import de.xonibo.stickes.assemble.KochSnowFlake;
+import de.xonibo.stickes.assemble.SierpinskiTriangle;
 import de.xonibo.stickes.awt.Examples;
 import de.xonibo.stickes.format.ImagePNG;
 import de.xonibo.stickes.format.Tajima;
@@ -34,6 +35,10 @@ public class CreateExamples {
         for (Examples.ExampleEnum e : Examples.ExampleEnum.values()) {
             StichData sd = new Plain(e.getShape(null)).toStichData().insertCenterStichAtStart();
             saveDstAndPNG(e.name(), sd);
+        }
+        for (int i = 3; i < 7; i++) {
+            StichData sd = new Plain(new SierpinskiTriangle(i, 100).getPath()).toStichData().insertCenterStichAtStart();
+            saveDstAndPNG("SierpinskiTriangle" + i, sd);
         }
         for (int i = 5; i < 19; i++) {
             StichData sd = new Plain(new DragonCurve(0, 0, i, 10).getPath()).toStichData().insertCenterStichAtStart();
