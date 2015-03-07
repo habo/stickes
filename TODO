@@ -18,11 +18,11 @@
 [ ] AWT GUI tests
 [ ] viel mehr tests!!!
 [x] fix bug dst Farbverschiebung
-[ ] fix bug dst Zwischenjumps
-[ ] fix bug dst Startpunkt soll Center sein
+[x] fix bug dst Zwischenjumps
+[x] fix bug dst Startpunkt soll Center sein
 [x] fix bug dst Spiegelung um X Achse
 [/] fix bug dst shape-to-Stichdata Fehlende Sprünge
-[/] automatische Zwischenjumps
+[x] automatische Zwischenjumps
 [x] .pes (aus pec) laden implementation
 [/] .pes (aus pec) speichern implementation
 [x] .dst laden + speichern implementation

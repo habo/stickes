@@ -23,7 +23,9 @@ public class CreateExamples {
         t.save(dst, sd);
         final File png = new File(path, s + ".png");
         Logger.getGlobal().info(String.format("write %s", png.getName()));
-        new ImagePNG().save(new FileOutputStream(png), t.load(dst));
+        final ImagePNG image = new ImagePNG();
+        image.setShowInfo(true);
+        image.save(new FileOutputStream(png), t.load(dst));
 
 //        System.out.println(s + " - info: " + sd.getInfo());
 //        for (int i = 0; i < Math.min(6, sd.size()-1); i++) {
@@ -42,17 +44,17 @@ public class CreateExamples {
             StichData sd = new Plain(e.getShape(null)).toStichData().insertCenterStichAtStart();
             saveDstAndPNG(e.name(), sd);
         }
-        for (int i = 5; i < 19; i++) {
-            StichData sd = new Plain(new DragonCurve(0, 0, i, 10).getPath()).toStichData().insertCenterStichAtStart();
-            saveDstAndPNG("Dragon_l10_dim" + i, sd);
-        }
-        for (int i = 2; i < 6; i++) {
-            StichData sd = new Plain(new KochSnowFlake(i).getPath()).toStichData().insertCenterStichAtStart();
-            saveDstAndPNG("Koch_" + i, sd);
-        }
-        for (int aw = 1; aw < 80; aw++) {
-            StichData sd = new Plain(new Knaeuel(1000, 20, 4, aw).getPath()).toStichData();
-            saveDstAndPNG("Knaeuel-n1000-strecke20-winkel4-aw" + aw, sd);
-        }
+//        for (int i = 5; i < 19; i++) {
+//            StichData sd = new Plain(new DragonCurve(0, 0, i, 10).getPath()).toStichData().insertCenterStichAtStart();
+//            saveDstAndPNG("Dragon_l10_dim" + i, sd);
+//        }
+//        for (int i = 2; i < 6; i++) {
+//            StichData sd = new Plain(new KochSnowFlake(i).getPath()).toStichData().insertCenterStichAtStart();
+//            saveDstAndPNG("Koch_" + i, sd);
+//        }
+//        for (int aw = 1; aw < 80; aw++) {
+//            StichData sd = new Plain(new Knaeuel(1000, 20, 4, aw).getPath()).toStichData();
+//            saveDstAndPNG("Knaeuel-n1000-strecke20-winkel4-aw" + aw, sd);
+//        }
     }
 }

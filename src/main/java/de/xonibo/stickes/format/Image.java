@@ -3,6 +3,7 @@ package de.xonibo.stickes.format;
 import de.xonibo.stickes.StichData;
 import de.xonibo.stickes.awt.Painter;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -14,6 +15,16 @@ public abstract class Image implements StichFileSave {
 
     private final String formatname;
     private Color backgroundColor = Color.LIGHT_GRAY;
+    private Color textColor = Color.BLACK;
+    private boolean showInfo = false;
+
+    public void setShowInfo(boolean showInfo) {
+        this.showInfo = showInfo;
+    }
+
+    public boolean isShowInfo() {
+        return showInfo;
+    }
 
     public void setBackgroundColor(Color backgroundColor) {
         this.backgroundColor = backgroundColor;
@@ -30,6 +41,12 @@ public abstract class Image implements StichFileSave {
         Graphics g = im.getGraphics();
         g.setColor(backgroundColor);
         g.fillRect(0, 0, im.getWidth(), im.getHeight());
+        if (isShowInfo()) {
+            g.setFont(new Font("Verdana", Font.BOLD, 10));
+            g.setColor(textColor);
+            g.drawString(data.getInfo(), 0, 10);
+        }
+
         Painter pain = new Painter();
         pain.drawStichData(g, norm, 0, 0, 5, norm.size(), 1);
         ImageIO.write(im, formatname.toUpperCase(), out);
