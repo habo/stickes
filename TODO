@@ -39,16 +39,17 @@
 [x] stiche programmieren -> in SS testen
 [x] stiche programmieren -> in Maschine testen
 [ ] simple img converter -> kreuzstich
-[ ] Examples: Sirpinsky Dreieck
+[x] Examples: Sierpinsky Dreieck
 [ ] Center Start (für prof. Stickmaschinen)
 [ ] ggf. stich flächen zusammenfassen
 [ ] ggf. Interface StickesSource durch codemodel ersetzen
 [ ] ggf. Farben reduzieren
 [ ] ggf. selbst rastern und skalieren?
 [ ] ggf. WebGUI?
-[ ] github? vorher externe quellen prüfen!
-[ ] QR Code und Barcodes?
-[ ] weitere formate?
+[x] github? vorher externe quellen prüfen!
+[ ] stabile Versionen
+[/] QR Code und Barcodes?
+[ ] weitere Stickformate?
 
 Legende
 [ ] sollte gemacht werden

@@ -7,15 +7,15 @@ License is GPLv3 without commercial use for declared files.
 Parts are under zlib-license, see other-licenses/ZLIB-LICENSE.txt for details
 
 ## run visual editor
-mvn exec:java 
+mvn compile exec:java 
 
 ## run Sonar integration
-mvn install sonar:sonar
+mvn compile sonar:sonar
 
 ## create example files in Directory "target/output"
-mvn clean compile exec:java -Dexec.mainClass="de.xonibo.stickes.examples.CreateExamples"
+mvn compile exec:java -Dexec.mainClass="de.xonibo.stickes.examples.CreateExamples"
 
-## clean 
+## clean up everything
 mvn clean 
 
 ## Contact 
