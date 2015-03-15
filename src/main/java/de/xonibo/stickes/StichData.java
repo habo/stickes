@@ -78,7 +78,7 @@ public class StichData extends ArrayList<Stich> implements StickesSource {
     }
 
     public int getMaxCornerX() {
-        int x = 0;
+        int x = 1;
         for (Stich stich : this) {
             if (stich.getX() > x) {
                 x = stich.getX();
@@ -88,7 +88,7 @@ public class StichData extends ArrayList<Stich> implements StickesSource {
     }
 
     public int getMaxCornerY() {
-        int y = 0;
+        int y = 1;
         for (Stich stich : this) {
             if (stich.getY() > y) {
                 y = stich.getY();
