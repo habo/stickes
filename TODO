@@ -10,7 +10,7 @@
 [x] AWT GUI Pfade speichern als Object
 [x] AWT GUI Pfade speichern als Java Source
 [/] AWT GUI fix Pfade zeichnen Versatz -> skalierungsproblem
-[ ] AWT GUI Farbtabelle?
+[?] AWT GUI Farbtabelle
 [ ] AWT GUI ggf. SVG Importer
 [ ] AWT GUI History - Vor/Zurück mind 10 Schritte
 [ ] AWT GUI Options für Examples und anderes (Choice, List, TabbedPanes...)
@@ -29,7 +29,7 @@
 [x] fix bug .dst Stichweite ist begrenzt, Exception werfen oder jumps umsetzen
 [ ] .dst Farbdatei lesen + speichern implementation
 [ ] fix .dst Datei ohne Stiche resettet Maschine
-[ ] Recherche: kreuzstich oder wie kann man ein bild digitalisieren?
+[?] Recherche: kreuzstich oder wie kann man ein bild digitalisieren
 [x] programmatisch: path programmieren
 [x] programmatisch: path programmieren mit fraktalen
 [ ] programmatisch: path feste stichweite einstellen -> Options
@@ -44,17 +44,19 @@
 [ ] ggf. stich flächen zusammenfassen
 [ ] ggf. Interface StickesSource durch codemodel ersetzen
 [ ] ggf. Farben reduzieren
-[ ] ggf. selbst rastern und skalieren?
-[ ] ggf. WebGUI?
+[?] ggf. selbst rastern und skalieren
+[?] ggf. WebGUI
 [x] github? vorher externe quellen prüfen!
 [ ] stabile Versionen
-[/] QR Code und Barcodes?
-[ ] weitere Stickformate?
+[x] QR Code implementieren
+[ ] QR Code Stich/Jump Optimierung!
+[?] Barcodes
+[?] weitere Stickformate!
 
 Legende
 [ ] sollte gemacht werden
 [x] erledigt
 [/] teilweise erledigt
 [N] Wird nicht Umgesetzt, da bessere Lösung existiert
-
+[?] nice to have
 

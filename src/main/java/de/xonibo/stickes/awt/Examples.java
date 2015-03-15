@@ -10,6 +10,7 @@ import de.xonibo.stickes.assemble.Knaeuel;
 import de.xonibo.stickes.assemble.KochCurve;
 import de.xonibo.stickes.assemble.KochSnowFlake;
 import de.xonibo.stickes.assemble.PythagorasTree;
+import de.xonibo.stickes.assemble.QR;
 import de.xonibo.stickes.assemble.Quadratrosette;
 import de.xonibo.stickes.assemble.Siebenkreis;
 import de.xonibo.stickes.assemble.SierpinskiTriangle;
@@ -27,11 +28,12 @@ import java.awt.event.KeyEvent;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.GeneralPath;
-import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -41,8 +43,44 @@ import javax.swing.UIManager;
 
 public class Examples implements ActionListener {
 
+    public static Shape getPentagramShape(int x, int y, int scale) {
+        GeneralPath path = new GeneralPath();
+        path.moveTo(x + 10 * scale, y);
+        path.lineTo(x + 17 * scale, y + 20 * scale);
+        path.lineTo(x, y + 7 * scale);
+        path.lineTo(x + 20 * scale, y + 7 * scale);
+        path.lineTo(x + 3 * scale, y + 20 * scale);
+        path.lineTo(x + 10 * scale, y);
+        path.closePath();
+        return path;
+    }
+
+    public static Shape getSmileShape(int x, int y, int d) {
+        int xh = x + d / 2;
+        int yh = y + d / 2;
+        Area shape = new Area();
+        shape.add(new Area(new Ellipse2D.Double(x, y, d, d)));
+        int a = d / 5;
+        int b = d / 3;
+        shape.subtract(new Area(new Ellipse2D.Double(xh - d / 16, yh - d / 8, d / 8, d / 4)));
+        shape.subtract(new Area(new Ellipse2D.Double(xh - d / 4, yh + b - d / 16, d / 2, d / 8)));
+        shape.subtract(new Area(new Ellipse2D.Double(xh - a - d / 8, yh - b, d / 4, d / 4)));
+        shape.subtract(new Area(new Ellipse2D.Double(xh + a - d / 8, yh - b, d / 4, d / 4)));
+        return shape;
+    }
+
+    public static Text getText(Shape shape, String text, int fontsize) {
+        Text o = new Text(shape, new Font("Verdana", Font.PLAIN, fontsize), text);
+        o.setFlatness(1);
+        return o;
+    }
+
     private final Visual visual;
     protected JMenuItem menuItemExampleOptions = new JMenuItem("Options", KeyEvent.VK_HOME);
+
+    final String exampleText = "Hello World";
+
+    private final List<JMenuItem> menuitems = new ArrayList<>();
 
     public Examples(Visual visual) {
         this.visual = visual;
@@ -60,6 +98,84 @@ public class Examples implements ActionListener {
 
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == menuItemExampleOptions) {
+            displayOptions();
+        }
+
+        for (JMenuItem mi : getMenuitems()) {
+            if (e.getSource() == mi) {
+                visual.getStichData().addAll(getStichData(visual.stichformat, mi.getText()));
+                visual.init();
+                visual.repaint();
+            }
+        }
+    }
+
+    public StichData getStichData(StichFormat format, String name) {
+        try {
+            switch (ExampleEnum.valueOf(name)) {
+                case QRCode: {
+                    return new QR(exampleText, 6, 3).toStichData();
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Examples.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Shape shape = ExampleEnum.valueOf(name).getShape(visual);
+        BasicShape bs;
+        switch (format) {
+            case JumpOnly:
+            case Plain:
+                bs = new Plain(shape);
+                break;
+            case Satin:
+                bs = new Satin(shape);
+                break;
+            case Text:
+                bs = getText(shape, exampleText, 20);
+                break;
+            default:
+                return new StichData();
+        }
+        return bs.toStichData(StichFormat.JumpOnly.equals(format));
+    }
+
+    public JMenu createMenu() {
+        JMenu menuExamples = new JMenu("Examples");
+        for (JMenuItem jmi : createMenuItems()) {
+            menuExamples.add(jmi);
+        }
+        menuExamples.add(new JSeparator());
+        menuItemExampleOptions.addActionListener(this);
+        menuExamples.add(menuItemExampleOptions);
+
+        return menuExamples;
+    }
+
+    public List<JMenuItem> getMenuitems() {
+        if (menuitems.isEmpty()) {
+            menuitems.addAll(createMenuItems());
+        }
+        return menuitems;
+    }
+
+    public List<JMenuItem> createMenuItems() {
+        List<String> strings = new ArrayList<>();
+        for (ExampleEnum e : ExampleEnum.values()) {
+            strings.add(e.toString());
+        }
+        Collections.sort(strings);
+        for (String label : strings) {
+            JMenuItem i = new JMenuItem(label);
+            i.addActionListener(this);
+            menuitems.add(i);
+        }
+
+        return menuitems;
+    }
+
     public enum StichFormat {
 
         Plain, Satin, Text, JumpOnly
@@ -67,24 +183,7 @@ public class Examples implements ActionListener {
 
     public enum ExampleEnum {
 
-        DragonCurve,
-        KochCurve,
-        KochSnowFlake,
-        HilbertCurve,
-        CCurve,
-        PythTreeCurve,
-        ArrowTipCurve,
-        BinTreeCurve,
-        Quadratrosette,
-        Siebenkreis,
-        SternVieleck,
-        Knaeuel,
-        ZackenCurve,
-        SierpinskiTriangle,
-        Pentagram,
-        Smile,
-        Line,
-        Metric100, Metric250, Metric500,;
+        DragonCurve, KochCurve, KochSnowFlake, HilbertCurve, CCurve, PythTreeCurve, ArrowTipCurve, BinTreeCurve, Quadratrosette, Siebenkreis, SternVieleck, Knaeuel, ZackenCurve, SierpinskiTriangle, Pentagram, Smile, Line, Metric100, Metric250, Metric500, QRCode;
 
         public Shape getShape(Visual visual) {
             final String customized_Dialog = "Customized Dialog";
@@ -145,10 +244,6 @@ public class Examples implements ActionListener {
                     return new DragonCurve(100, 100, dim, step).getPath();
                 case Pentagram:
                     return getPentagramShape(0, 0, 5);
-//                case StrokePentagram:
-//                    BasicStroke bs = new BasicStroke(20, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 5f, new float[]{25.0f, 25.0f}, 0);
-//                    Shape s = bs.createStrokedShape(getPentagramShape(0, 0, 15));
-//                    return new Plain(s);
                 case Metric100:
                     return new Rectangle2D.Float(0, 0, 100, 100);
                 case Metric250:
@@ -190,109 +285,4 @@ public class Examples implements ActionListener {
             return path;
         }
     }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == menuItemExampleOptions) {
-            displayOptions();
-        }
-
-        for (JMenuItem mi : getMenuitems()) {
-            if (e.getSource() == mi) {
-                visual.getStichData().addAll(getStichData(visual.stichformat, mi.getText()));
-                visual.init();
-                visual.repaint();
-            }
-        }
-    }
-
-    public StichData getStichData(StichFormat format, String name) {
-        Shape shape = ExampleEnum.valueOf(name).getShape(visual);
-        BasicShape bs;
-        switch (format) {
-            case JumpOnly:
-            case Plain:
-                bs = new Plain(shape);
-                break;
-            case Satin:
-                bs = new Satin(shape);
-                break;
-            case Text:
-                bs = getText(shape, "Hello World", 20);
-                break;
-            default:
-                return new StichData();
-        }
-        return bs.toStichData(StichFormat.JumpOnly.equals(format));
-    }
-
-    public JMenu createMenu() {
-        JMenu menuExamples = new JMenu("Examples");
-        for (JMenuItem jmi : createMenuItems()) {
-            menuExamples.add(jmi);
-        }
-        menuExamples.add(new JSeparator());
-        menuItemExampleOptions.addActionListener(this);
-        menuExamples.add(menuItemExampleOptions);
-
-        return menuExamples;
-    }
-
-    private final List<JMenuItem> menuitems = new ArrayList<>();
-
-    public List<JMenuItem> getMenuitems() {
-        if (menuitems.isEmpty()) {
-            menuitems.addAll(createMenuItems());
-        }
-        return menuitems;
-    }
-
-    public List<JMenuItem> createMenuItems() {
-        List<String> strings = new ArrayList<>();
-        for (ExampleEnum e : ExampleEnum.values()) {
-            strings.add(e.toString());
-        }
-        Collections.sort(strings);
-        for (String label : strings) {
-            JMenuItem i = new JMenuItem(label);
-            i.addActionListener(this);
-            //i.addKeyListener(this.visual);
-            menuitems.add(i);
-        }
-
-        return menuitems;
-    }
-
-    static public Shape getPentagramShape(int x, int y, int scale) {
-        GeneralPath path = new GeneralPath();
-        path.moveTo(x + 10 * scale, y);
-        path.lineTo(x + 17 * scale, y + 20 * scale);
-        path.lineTo(x, y + 7 * scale);
-        path.lineTo(x + 20 * scale, y + 7 * scale);
-        path.lineTo(x + 3 * scale, y + 20 * scale);
-        path.lineTo(x + 10 * scale, y);
-        path.closePath();
-        return path;
-    }
-
-    static public Shape getSmileShape(int x, int y, int d) {
-        int xh = x + d / 2;
-        int yh = y + d / 2;
-        Area shape = new Area();
-        shape.add(new Area(new Ellipse2D.Double(x, y, d, d)));
-        int a = d / 5;
-        int b = d / 3;
-        shape.subtract(new Area(new Ellipse2D.Double(xh - d / 16, yh - d / 8, d / 8, d / 4)));
-        shape.subtract(new Area(new Ellipse2D.Double(xh - d / 4, yh + b - d / 16, d / 2, d / 8)));
-        shape.subtract(new Area(new Ellipse2D.Double(xh - a - d / 8, yh - b, d / 4, d / 4)));
-        shape.subtract(new Area(new Ellipse2D.Double(xh + a - d / 8, yh - b, d / 4, d / 4)));
-        return shape;
-    }
-
-    static public Text getText(Shape shape, String text, int fontsize) {
-        Text o = new Text(shape, new Font("Verdana", Font.PLAIN, fontsize), text);
-        o.setFlatness(1);
-        return o;
-    }
-
 }
