@@ -1,5 +1,6 @@
 package de.xonibo.stickes.assemble;
 
+import java.awt.Point;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.PathIterator;
 
@@ -7,10 +8,10 @@ import java.awt.geom.PathIterator;
 // moved to GPLv3 by Owner Kevin Wayne
 public class Turtle {
 
-    private double x = 0, y = 0;     // turtle is at (x, y)
-    private double angle = 0;    // facing this many degrees counterclockwise from the x-axis
+    protected double x = 0, y = 0;     // turtle is at (x, y)
+    protected double angle = 0;    // facing this many degrees counterclockwise from the x-axis
 
-    private final GeneralPath generalPath = new GeneralPath();
+    protected final GeneralPath generalPath = new GeneralPath();
 
     public Turtle() {
         init();
@@ -50,21 +51,47 @@ public class Turtle {
     public double getAngle() {
         return angle;
     }
-    
+
     // rotate orientation delta degrees counterclockwise
     public void turn(double delta) {
         angle += delta;
     }
 
-    // move forward the given amount, with the pen down
-    public void move(double step) {
+    // move forward the given amount
+    public void move(double step, boolean pendown) {
         x += step * Math.cos(Math.toRadians(angle));
         y += step * Math.sin(Math.toRadians(angle));
-        generalPath.lineTo(x, y);
+        if (pendown) {
+            generalPath.lineTo(x, y);
+        } else {
+            generalPath.moveTo(x, y);
+        }
+
     }
+
+    public void move(double step) {
+        move(step, true);
+    }
+
+    public void jump(double step) {
+        move(step, false);
+    }
+
     // move backward the given amount, with the pen down
     public void back(double step) {
         move(-step);
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public Point getPoint() {
+        return new Point((int) x, (int) y);
     }
 
 }
