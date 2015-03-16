@@ -57,7 +57,24 @@ public class Turtle {
         angle += delta;
     }
 
+    protected void move(Point pos) {
+        move(pos, true);
+    }
+    protected void jump(Point pos) {
+        move(pos, false);
+    }
+    protected void move(Point pos, boolean pendown) {
+        if (pendown) {
+            generalPath.lineTo(pos.getX(), pos.getY());
+        } else {
+            generalPath.moveTo(pos.getX(), pos.getY());
+        }
+        x = pos.getX();
+        y = pos.getY();
+    }
+
     // move forward the given amount
+
     public void move(double step, boolean pendown) {
         x += step * Math.cos(Math.toRadians(angle));
         y += step * Math.sin(Math.toRadians(angle));

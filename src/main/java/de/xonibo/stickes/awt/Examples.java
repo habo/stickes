@@ -9,6 +9,7 @@ import de.xonibo.stickes.assemble.Hilbert;
 import de.xonibo.stickes.assemble.Knaeuel;
 import de.xonibo.stickes.assemble.KochCurve;
 import de.xonibo.stickes.assemble.KochSnowFlake;
+import de.xonibo.stickes.assemble.LindenmayerTurtle;
 import de.xonibo.stickes.assemble.PythagorasTree;
 import de.xonibo.stickes.assemble.QR;
 import de.xonibo.stickes.assemble.Quadratrosette;
@@ -16,6 +17,7 @@ import de.xonibo.stickes.assemble.Siebenkreis;
 import de.xonibo.stickes.assemble.SierpinskiTriangle;
 import de.xonibo.stickes.assemble.Sternvieleck;
 import de.xonibo.stickes.assemble.Zacken;
+import de.xonibo.stickes.format.ImagePNG;
 import de.xonibo.stickes.stiches.BasicShape;
 import de.xonibo.stickes.stiches.Plain;
 import de.xonibo.stickes.stiches.Satin;
@@ -29,6 +31,7 @@ import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Rectangle2D;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -183,11 +186,15 @@ public class Examples implements ActionListener {
 
     public enum ExampleEnum {
 
-        DragonCurve, KochCurve, KochSnowFlake, HilbertCurve, CCurve, PythTreeCurve, ArrowTipCurve, BinTreeCurve, Quadratrosette, Siebenkreis, SternVieleck, Knaeuel, ZackenCurve, SierpinskiTriangle, Pentagram, Smile, Line, Metric100, Metric250, Metric500, QRCode;
+        DragonCurve, KochCurve, KochSnowFlake, HilbertCurve, CCurve, PythTreeCurve, ArrowTipCurve, BinTreeCurve, Quadratrosette, Siebenkreis, SternVieleck, Knaeuel, ZackenCurve, SierpinskiTriangle, Pentagram, Smile, Line, Metric100, Metric250, Metric500, QRCode,
+        Lace;
 
         public Shape getShape(Visual visual) {
             final String customized_Dialog = "Customized Dialog";
             switch (this) {
+                case Lace:
+                    LindenmayerTurtle ls = new LindenmayerTurtle(7, 30, 10, "W", "W=+++X--F--ZFX+", "X=---W++F++YFW-", "Y=+ZFX--F--Z+++", "Z=-YFW++F++Y---");
+                    return ls.getPath();
                 case Smile:
                     return getSmileShape(150, 150, 150);
                 case Line:
