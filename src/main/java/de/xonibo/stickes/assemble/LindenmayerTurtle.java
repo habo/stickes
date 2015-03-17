@@ -10,34 +10,43 @@ public class LindenmayerTurtle extends Turtle {
 
     private double lsangle = 90;
     private int lsstep = 10;
-    final private Map<Character, String> map = new HashMap<>();
+    final private Map<Character, String> rulemap = new HashMap<>();
 
     private boolean reversed = false;
-    Stack<Point> stackPosition = new Stack();
-    Stack<Double> stackAngle = new Stack();
+    private String lsrule;
+    final private Stack<Point> stackPosition = new Stack();
+    final private Stack<Double> stackAngle = new Stack();
+    private int lsiterations;
 
     public LindenmayerTurtle() {
         super(0, 0, -90);
-        map.put('F', "F+F-F-F+F");
+        rulemap.put('F', "F+F-F-F+F");
         iterate("-F", 4);
     }
 
     public LindenmayerTurtle(int iterations, double angle, int stepwidth, String initrule, String... newinstructions) {
         super(0, 0, -90);
-        System.out.println("init: " + initrule);
         for (String cmd : newinstructions) {
             String[] split = cmd.split("=");
-            map.put(split[0].trim().charAt(0), split.length==1?"":split[1]);
-            System.out.println("rule: " + cmd);
+            rulemap.put(split[0].trim().charAt(0), split.length == 1 ? "" : split[1]);
         }
-        System.out.println("angle: " + angle);
-        System.out.println("step: " + stepwidth);
-        System.out.println("iterations: " + iterations);
-        System.out.println("constants: "); // TODO
-        System.out.println("");
         lsangle = angle;
         lsstep = stepwidth;
+        lsrule = initrule;
+        lsiterations = iterations;
         iterate(initrule, iterations);
+    }
+
+    public String getInfo() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("init: ").append(lsrule).append("\n");
+        for (Character key : rulemap.keySet()) {
+            sb.append("rule: ").append(key).append("->").append(rulemap.get(key)).append("\n");
+        }
+        sb.append("angle: ").append(angle).append("\n");
+        sb.append("step: ").append(lsstep).append("\n");
+        sb.append("iterations: ").append(lsiterations).append("\n");
+        return sb.toString();
     }
 
     private void iterate(String rule, int depth) {
@@ -47,11 +56,11 @@ public class LindenmayerTurtle extends Turtle {
         for (int i = 0; i < rule.length(); i++) {
             char c = rule.charAt(i);
 
-            if (map.containsKey(c)) {
-                iterate(map.get(c), depth - 1);
+            if (rulemap.containsKey(c)) {
+                iterate(rulemap.get(c), depth - 1);
             }
-            
-            switch (c) {
+
+            switch (c) { // these chars are also known as constants
                 case 'C':
                     i++;
                     // TODO set color
@@ -66,6 +75,21 @@ public class LindenmayerTurtle extends Turtle {
                 case 'F':
                 case 'G':
                     move(lsstep);
+                    break;
+                case '1':
+                    move(1);
+                    break;
+                case '2':
+                    move(2);
+                    break;
+                case '3':
+                    move(3);
+                    break;
+                case '4':
+                    move(4);
+                    break;
+                case '5':
+                    move(5);
                     break;
                 case '6':
                     move(6);
