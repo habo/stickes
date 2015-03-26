@@ -1,6 +1,11 @@
 # Stickes
 Java based embroidery software
 
+Special features: 
+* fractals
+* turtle programming pattern
+* QR-Code generation
+
 Required: maven3, JSDK1.7
 
 License is GPLv3 without commercial use for declared files.
