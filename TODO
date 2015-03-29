@@ -1,22 +1,21 @@
-[ ] alternative zu AWT recherchieren
-[x] AWT GUI Anzeige der StichData
-[x] AWT GUI skalierung
-[x] AWT GUI laden + speichern
-[/] AWT GUI "play"
-[x] AWT GUI Dateieinfos
-[ ] AWT GUI Dateiinfos prüfen mit Anzeige an der Maschine
-[N] AWT GUI transparentes Bild zum selbstdigitalisieren einbinden
-[x] AWT GUI Pfade speichern
-[x] AWT GUI Pfade speichern als Object
-[x] AWT GUI Pfade speichern als Java Source
-[/] AWT GUI fix Pfade zeichnen Versatz -> skalierungsproblem
-[?] AWT GUI Farbtabelle
-[ ] AWT GUI ggf. SVG Importer
-[ ] AWT GUI History - Vor/Zurück mind 10 Schritte
-[ ] AWT GUI Options für Examples und anderes (Choice, List, TabbedPanes...)
-[ ] AWT GUI Options für Examples (Slider für sofortige Änderungen)
-[ ] AWT GUI tests
-[ ] viel mehr tests!!!
+[x] GUI Anzeige der StichData
+[x] GUI skalierung
+[x] GUI laden + speichern
+[x] GUI "play" button
+[x] GUI Dateieinfos
+[ ] GUI Dateiinfos prüfen mit Anzeige an der Maschine
+[N] GUI transparentes Bild zum selbstdigitalisieren einbinden
+[x] GUI Pfade speichern
+[x] GUI Pfade speichern als Object
+[x] GUI Pfade speichern als Java Source
+[/] GUI fix Pfade zeichnen Versatz -> skalierungsproblem
+[?] GUI Farbtabelle
+[ ] GUI ggf. SVG Importer
+[ ] GUI History - Vor/Zurück mind 10 Schritte
+[N] GUI Options für Examples und anderes (Choice, List, TabbedPanes...) anders umsetzen!
+[X] GUI Options für Examples (Slider für sofortige Änderungen) Siehe LindenmayerSystem Editor
+[ ] GUI tests
+[/] viel mehr tests!!!
 [x] fix bug dst Farbverschiebung
 [x] fix bug dst Zwischenjumps
 [x] fix bug dst Startpunkt soll Center sein
@@ -32,14 +31,16 @@
 [?] Recherche: kreuzstich oder wie kann man ein bild digitalisieren
 [x] programmatisch: path programmieren
 [x] programmatisch: path programmieren mit fraktalen
-[ ] programmatisch: path feste stichweite einstellen -> Options
-[ ] programmatisch: flächen programmieren
+[x] programmatisch: path feste stichweite einstellen -> Options (siehe LSEditor)
+[/] programmatisch: flächen für QRCode programmieren
 [/] programmatisch: text to stiches programmieren
 [ ] programmatisch: text font alternativen, siehe qcad fonts in pycam/tags/release-0.5/share/fonts
+[x] Examples: Sierpinsky Dreieck
+[x] Lindenmayer Systems Editor
+[/] Lindenmayer Systems Editor persistenz
 [x] stiche programmieren -> in SS testen
 [x] stiche programmieren -> in Maschine testen
 [ ] simple img converter -> kreuzstich
-[x] Examples: Sierpinsky Dreieck
 [ ] Center Start (für prof. Stickmaschinen)
 [ ] ggf. stich flächen zusammenfassen
 [ ] ggf. Interface StickesSource durch codemodel ersetzen

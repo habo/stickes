@@ -15,7 +15,7 @@ public class LindenmayerTurtle extends Turtle {
     private Map<Character, String> rulemap = new HashMap<>();
 
     private boolean reversed = false;
-    private String lsrule;
+    private String axiom;
     final private Stack<Point> stackPosition = new Stack();
     final private Stack<Double> stackAngle = new Stack();
     private int lsiterations;
@@ -27,38 +27,40 @@ public class LindenmayerTurtle extends Turtle {
         iterate("-F", 4);
     }
 
-    public LindenmayerTurtle(int iterations, double angle, int stepwidth, String initrule, List<String> newinstructions) {
+    public LindenmayerTurtle(int iterations, double angle, int stepwidth, String axiom, List<String> newinstructions) {
         super(0, 0, -90);
         rulemap = createMap(newinstructions);
         lsangle = angle;
         lsstep = stepwidth;
-        lsrule = initrule;
+        this.axiom = axiom;
         lsiterations = iterations;
-        iterate(initrule, iterations);
+        iterate(axiom, iterations);
     }
 
-    public LindenmayerTurtle(int iterations, double angle, int stepwidth, String initrule, String... newinstructions) {
+    public LindenmayerTurtle(int iterations, double angle, int stepwidth, String axiom, String... newinstructions) {
         super(0, 0, -90);
         rulemap = createMap(Arrays.asList(newinstructions));
         lsangle = angle;
         lsstep = stepwidth;
-        lsrule = initrule;
+        this.axiom = axiom;
         lsiterations = iterations;
-        iterate(initrule, iterations);
+        iterate(axiom, iterations);
     }
 
     public final Map<Character, String> createMap(List<String> newinstructions) {
         final Map<Character, String> map = new HashMap<>();
         for (String cmd : newinstructions) {
-            String[] split = cmd.split("=");
-            map.put(split[0].trim().charAt(0), split.length == 1 ? "" : split[1]);
+            String[] split = cmd.trim().split("=");
+            if (split.length == 2) {
+                map.put(split[0].trim().charAt(0), split[1]);
+            }
         }
         return map;
     }
 
     public String getInfo() {
         StringBuilder sb = new StringBuilder();
-        sb.append("init: ").append(lsrule).append("\n");
+        sb.append("init: ").append(axiom).append("\n");
         for (Character key : rulemap.keySet()) {
             sb.append("rule: ").append(key).append("->").append(rulemap.get(key)).append("\n");
         }

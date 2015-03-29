@@ -27,24 +27,27 @@ public class EditorMenu implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == menuitemls) {
-            JDialog dialog = new JDialog(visual.frame, false);
-            final LSEditorJPanel panel = new LSEditorJPanel(visual);
-
-            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(dialog.getContentPane());
-            dialog.getContentPane().setLayout(layout);
-            layout.setHorizontalGroup(
-                    layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            );
-            layout.setVerticalGroup(
-                    layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            );
-
-            dialog.add(panel);
-            dialog.pack();
-            dialog.setVisible(true);
-
+            openLindenmayerSystemsDialog();
         }
+    }
+
+    public void openLindenmayerSystemsDialog() {
+        JDialog dialog = new JDialog(visual.frame, false);
+        final LSEditorJPanel panel = new LSEditorJPanel(visual);
+        
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(dialog.getContentPane());
+        dialog.getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        
+        dialog.add(panel);
+        dialog.pack();
+        dialog.setVisible(true);
     }
 }
