@@ -1,4 +1,4 @@
-package de.xonibo.stickes.awt;
+package de.xonibo.stickes.gui;
 
 import de.xonibo.stickes.Stich;
 import de.xonibo.stickes.StichData;

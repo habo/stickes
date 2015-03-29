@@ -1,4 +1,4 @@
-package de.xonibo.stickes.awt;
+package de.xonibo.stickes.gui;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

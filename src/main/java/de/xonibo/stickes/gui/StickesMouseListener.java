@@ -1,4 +1,4 @@
-package de.xonibo.stickes.awt;
+package de.xonibo.stickes.gui;
 
 import de.xonibo.stickes.stiches.Plain;
 import de.xonibo.stickes.stiches.Satin;

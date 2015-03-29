@@ -1,4 +1,4 @@
-package de.xonibo.stickes.awt;
+package de.xonibo.stickes.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

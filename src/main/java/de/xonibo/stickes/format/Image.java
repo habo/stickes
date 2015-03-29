@@ -1,7 +1,7 @@
 package de.xonibo.stickes.format;
 
 import de.xonibo.stickes.StichData;
-import de.xonibo.stickes.awt.Painter;
+import de.xonibo.stickes.gui.Painter;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;

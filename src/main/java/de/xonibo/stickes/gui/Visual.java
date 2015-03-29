@@ -1,8 +1,8 @@
-package de.xonibo.stickes.awt;
+package de.xonibo.stickes.gui;
 
 import de.xonibo.stickes.Stich;
 import de.xonibo.stickes.StichData;
-import de.xonibo.stickes.awt.ExamplesMenu.StichFormat;
+import de.xonibo.stickes.gui.ExamplesMenu.StichFormat;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;

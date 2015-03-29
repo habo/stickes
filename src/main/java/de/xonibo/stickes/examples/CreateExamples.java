@@ -5,7 +5,7 @@ import de.xonibo.stickes.assemble.DragonCurve;
 import de.xonibo.stickes.assemble.Knaeuel;
 import de.xonibo.stickes.assemble.KochSnowFlake;
 import de.xonibo.stickes.assemble.SierpinskiTriangle;
-import de.xonibo.stickes.awt.ExamplesMenu;
+import de.xonibo.stickes.gui.ExamplesMenu;
 import de.xonibo.stickes.format.ImagePNG;
 import de.xonibo.stickes.format.Tajima;
 import de.xonibo.stickes.stiches.Plain;

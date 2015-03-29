@@ -1,6 +1,6 @@
 package de.xonibo.stickes.examples;
 
-import de.xonibo.stickes.awt.LSEditorJPanel;
+import de.xonibo.stickes.gui.LSEditorJPanel;
 
 public class LSEditorJDialog extends javax.swing.JDialog {
 

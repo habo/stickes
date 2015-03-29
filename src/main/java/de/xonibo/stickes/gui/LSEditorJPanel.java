@@ -1,7 +1,7 @@
-package de.xonibo.stickes.awt;
+package de.xonibo.stickes.gui;
 
-import de.xonibo.stickes.LSEntry;
-import de.xonibo.stickes.LSList;
+import de.xonibo.stickes.gui.ls.LSEntry;
+import de.xonibo.stickes.gui.ls.LSList;
 import de.xonibo.stickes.StichData;
 import de.xonibo.stickes.assemble.LindenmayerTurtle;
 import de.xonibo.stickes.stiches.Plain;

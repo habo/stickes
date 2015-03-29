@@ -1,4 +1,4 @@
-package de.xonibo.stickes;
+package de.xonibo.stickes.gui.ls;
 
 import javax.swing.DefaultComboBoxModel;
 

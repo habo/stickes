@@ -12,7 +12,7 @@
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <exec.mainClass>de.xonibo.stickes.awt.Visual</exec.mainClass>
+        <exec.mainClass>de.xonibo.stickes.gui.Visual</exec.mainClass>
         <java.version>1.7</java.version>
     </properties>
     

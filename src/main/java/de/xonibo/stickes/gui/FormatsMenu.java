@@ -1,6 +1,6 @@
-package de.xonibo.stickes.awt;
+package de.xonibo.stickes.gui;
 
-import de.xonibo.stickes.awt.ExamplesMenu.StichFormat;
+import de.xonibo.stickes.gui.ExamplesMenu.StichFormat;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;

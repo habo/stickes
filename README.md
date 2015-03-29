@@ -2,7 +2,8 @@
 Java based embroidery software
 
 Special features: 
-* fractals
+* GUI (swing/awt)
+* fractals (Lindenmayer Systems)
 * turtle programming pattern
 * QR-Code generation
 

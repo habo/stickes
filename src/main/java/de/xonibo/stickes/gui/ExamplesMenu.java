@@ -1,4 +1,4 @@
-package de.xonibo.stickes.awt;
+package de.xonibo.stickes.gui;
 
 import de.xonibo.stickes.StichData;
 import de.xonibo.stickes.assemble.ArrowTip;

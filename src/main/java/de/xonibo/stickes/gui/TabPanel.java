@@ -1,4 +1,4 @@
-package de.xonibo.stickes.awt;
+package de.xonibo.stickes.gui;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
