@@ -1,6 +1,6 @@
 package de.xonibo.stickes.awt;
 
-import de.xonibo.stickes.awt.Examples.StichFormat;
+import de.xonibo.stickes.awt.ExamplesMenu.StichFormat;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -8,20 +8,19 @@ import java.util.List;
 import javax.swing.JMenu;
 import javax.swing.JRadioButtonMenuItem;
 
-public class Formats implements ActionListener {
+public class FormatsMenu implements ActionListener {
 
     final private Visual visual;
 
-
     private final List<JRadioButtonMenuItem> menuitems = new ArrayList<>();
 
-    public Formats(Visual visual) {
+    public FormatsMenu(Visual visual) {
         this.visual = visual;
     }
 
     public List<JRadioButtonMenuItem> createMenuItems() {
         List<JRadioButtonMenuItem> list = new ArrayList<>();
-        for (Examples.StichFormat sf : Examples.StichFormat.values()) {
+        for (ExamplesMenu.StichFormat sf : ExamplesMenu.StichFormat.values()) {
             JRadioButtonMenuItem i = new JRadioButtonMenuItem(sf.toString());
             if (sf.equals(visual.stichformat)) {
                 i.setSelected(true);
@@ -34,8 +33,9 @@ public class Formats implements ActionListener {
     }
 
     public List<JRadioButtonMenuItem> getMenuitems() {
-        if (menuitems.isEmpty())
+        if (menuitems.isEmpty()) {
             menuitems.addAll(createMenuItems());
+        }
         return menuitems;
     }
 

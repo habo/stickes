@@ -17,7 +17,6 @@ import de.xonibo.stickes.assemble.Siebenkreis;
 import de.xonibo.stickes.assemble.SierpinskiTriangle;
 import de.xonibo.stickes.assemble.Sternvieleck;
 import de.xonibo.stickes.assemble.Zacken;
-import de.xonibo.stickes.format.ImagePNG;
 import de.xonibo.stickes.stiches.BasicShape;
 import de.xonibo.stickes.stiches.Plain;
 import de.xonibo.stickes.stiches.Satin;
@@ -31,7 +30,6 @@ import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Rectangle2D;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -44,7 +42,7 @@ import javax.swing.JSeparator;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
-public class Examples implements ActionListener {
+public class ExamplesMenu implements ActionListener {
 
     public static Shape getPentagramShape(int x, int y, int scale) {
         GeneralPath path = new GeneralPath();
@@ -85,7 +83,7 @@ public class Examples implements ActionListener {
 
     private final List<JMenuItem> menuitems = new ArrayList<>();
 
-    public Examples(Visual visual) {
+    public ExamplesMenu(Visual visual) {
         this.visual = visual;
     }
 
@@ -124,7 +122,7 @@ public class Examples implements ActionListener {
                 }
             }
         } catch (Exception ex) {
-            Logger.getLogger(Examples.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ExamplesMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
         Shape shape = ExampleEnum.valueOf(name).getShape(visual);
         BasicShape bs;

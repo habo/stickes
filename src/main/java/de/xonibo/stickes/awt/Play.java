@@ -3,7 +3,7 @@ package de.xonibo.stickes.awt;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-class Play implements Runnable {
+public class Play implements Runnable {
 
     static private boolean running = false;
 

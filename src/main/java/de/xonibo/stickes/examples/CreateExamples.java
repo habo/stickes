@@ -5,7 +5,7 @@ import de.xonibo.stickes.assemble.DragonCurve;
 import de.xonibo.stickes.assemble.Knaeuel;
 import de.xonibo.stickes.assemble.KochSnowFlake;
 import de.xonibo.stickes.assemble.SierpinskiTriangle;
-import de.xonibo.stickes.awt.Examples;
+import de.xonibo.stickes.awt.ExamplesMenu;
 import de.xonibo.stickes.format.ImagePNG;
 import de.xonibo.stickes.format.Tajima;
 import de.xonibo.stickes.stiches.Plain;
@@ -32,7 +32,7 @@ public class CreateExamples {
 
     public static void main(String[] a) throws Exception {
 
-        for (Examples.ExampleEnum e : Examples.ExampleEnum.values()) {
+        for (ExamplesMenu.ExampleEnum e : ExamplesMenu.ExampleEnum.values()) {
             StichData sd = new Plain(e.getShape(null)).toStichData().insertCenterStichAtStart();
             saveDstAndPNG(e.name(), sd);
         }
