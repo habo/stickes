@@ -2,7 +2,7 @@ package de.xonibo.stickes.awt;
 
 import de.xonibo.stickes.Stich;
 import de.xonibo.stickes.StichData;
-import de.xonibo.stickes.awt.Examples.StichFormat;
+import de.xonibo.stickes.awt.ExamplesMenu.StichFormat;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -178,9 +178,10 @@ public class Visual extends JPanel implements ChangeListener, ActionListener, Ke
 
         menu.add(menuView);
 
-        menu.add(new Examples(this).createMenu());
+        menu.add(new EditorMenu(this).createMenu());
+        menu.add(new ExamplesMenu(this).createMenu());
 
-        menu.add(new Formats(this).createMenu());
+        menu.add(new FormatsMenu(this).createMenu());
         menu.add(painter.createMenu());
 
         frame.add(menu, BorderLayout.NORTH);

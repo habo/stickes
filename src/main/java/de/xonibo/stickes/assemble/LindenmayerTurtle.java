@@ -1,8 +1,10 @@
 package de.xonibo.stickes.assemble;
 
 import java.awt.Point;
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
@@ -10,7 +12,7 @@ public class LindenmayerTurtle extends Turtle {
 
     private double lsangle = 90;
     private int lsstep = 10;
-    final private Map<Character, String> rulemap = new HashMap<>();
+    private Map<Character, String> rulemap = new HashMap<>();
 
     private boolean reversed = false;
     private String lsrule;
@@ -19,22 +21,39 @@ public class LindenmayerTurtle extends Turtle {
     private int lsiterations;
 
     public LindenmayerTurtle() {
+        // koch kurve by default
         super(0, 0, -90);
         rulemap.put('F', "F+F-F-F+F");
         iterate("-F", 4);
     }
 
-    public LindenmayerTurtle(int iterations, double angle, int stepwidth, String initrule, String... newinstructions) {
+    public LindenmayerTurtle(int iterations, double angle, int stepwidth, String initrule, List<String> newinstructions) {
         super(0, 0, -90);
-        for (String cmd : newinstructions) {
-            String[] split = cmd.split("=");
-            rulemap.put(split[0].trim().charAt(0), split.length == 1 ? "" : split[1]);
-        }
+        rulemap = createMap(newinstructions);
         lsangle = angle;
         lsstep = stepwidth;
         lsrule = initrule;
         lsiterations = iterations;
         iterate(initrule, iterations);
+    }
+
+    public LindenmayerTurtle(int iterations, double angle, int stepwidth, String initrule, String... newinstructions) {
+        super(0, 0, -90);
+        rulemap = createMap(Arrays.asList(newinstructions));
+        lsangle = angle;
+        lsstep = stepwidth;
+        lsrule = initrule;
+        lsiterations = iterations;
+        iterate(initrule, iterations);
+    }
+
+    public final Map<Character, String> createMap(List<String> newinstructions) {
+        final Map<Character, String> map = new HashMap<>();
+        for (String cmd : newinstructions) {
+            String[] split = cmd.split("=");
+            map.put(split[0].trim().charAt(0), split.length == 1 ? "" : split[1]);
+        }
+        return map;
     }
 
     public String getInfo() {
@@ -56,10 +75,6 @@ public class LindenmayerTurtle extends Turtle {
         for (int i = 0; i < rule.length(); i++) {
             char c = rule.charAt(i);
 
-            if (rulemap.containsKey(c)) {
-                iterate(rulemap.get(c), depth - 1);
-            }
-
             switch (c) { // these chars are also known as constants
                 case 'C':
                     i++;
@@ -77,31 +92,18 @@ public class LindenmayerTurtle extends Turtle {
                     move(lsstep);
                     break;
                 case '1':
-                    move(1);
-                    break;
                 case '2':
-                    move(2);
-                    break;
                 case '3':
-                    move(3);
-                    break;
                 case '4':
-                    move(4);
-                    break;
                 case '5':
-                    move(5);
-                    break;
                 case '6':
-                    move(6);
-                    break;
                 case '7':
-                    move(7);
-                    break;
                 case '8':
-                    move(8);
-                    break;
                 case '9':
-                    move(9);
+                    try {
+                        move(Integer.parseInt("" + c));
+                    } catch (NumberFormatException e) {
+                    }
                     break;
                 case '!':
                     reversed = !reversed;
@@ -130,6 +132,10 @@ public class LindenmayerTurtle extends Turtle {
                     // previous color
                     break;
             }
+            if (rulemap.containsKey(c)) {
+                iterate(rulemap.get(c), depth - 1);
+            }
+
         }
     }
 }
