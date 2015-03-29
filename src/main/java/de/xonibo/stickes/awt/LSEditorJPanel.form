@@ -220,12 +220,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="FX"/>
       </Properties>
+      <Events>
+        <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="axiomCaretUpdate"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="axiomActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="rule1">
       <Properties>
         <Property name="text" type="java.lang.String" value="X=X+YF+"/>
       </Properties>
       <Events>
+        <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="rule1CaretUpdate"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rule1ActionPerformed"/>
       </Events>
     </Component>
@@ -233,6 +238,10 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Y=-FX-Y"/>
       </Properties>
+      <Events>
+        <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="rule2CaretUpdate"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rule2ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBoxAutoRun">
       <Properties>

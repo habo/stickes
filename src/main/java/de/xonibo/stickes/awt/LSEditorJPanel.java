@@ -89,8 +89,23 @@ public class LSEditorJPanel extends javax.swing.JPanel {
         jScrollPaneList.setViewportView(lslist);
 
         axiom.setText("FX");
+        axiom.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                axiomCaretUpdate(evt);
+            }
+        });
+        axiom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                axiomActionPerformed(evt);
+            }
+        });
 
         rule1.setText("X=X+YF+");
+        rule1.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                rule1CaretUpdate(evt);
+            }
+        });
         rule1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rule1ActionPerformed(evt);
@@ -98,6 +113,16 @@ public class LSEditorJPanel extends javax.swing.JPanel {
         });
 
         rule2.setText("Y=-FX-Y");
+        rule2.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                rule2CaretUpdate(evt);
+            }
+        });
+        rule2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rule2ActionPerformed(evt);
+            }
+        });
 
         jCheckBoxAutoRun.setText("autoRun");
         jCheckBoxAutoRun.addActionListener(new java.awt.event.ActionListener() {
@@ -219,9 +244,12 @@ public class LSEditorJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddRuleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddRuleActionPerformed
+// xxxx
     }//GEN-LAST:event_jButtonAddRuleActionPerformed
 
     private void rule1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rule1ActionPerformed
+//cc
+        
     }//GEN-LAST:event_rule1ActionPerformed
 
     private void jButtonRunLSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRunLSActionPerformed
@@ -247,7 +275,7 @@ public class LSEditorJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jCheckBoxAutoRunActionPerformed
 
     private void angleVetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {//GEN-FIRST:event_angleVetoableChange
-       //do something
+        //do something
     }//GEN-LAST:event_angleVetoableChange
 
     private void angleStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_angleStateChanged
@@ -257,10 +285,36 @@ public class LSEditorJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_angleStateChanged
 
     private void iterationsStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_iterationsStateChanged
-         if (jCheckBoxAutoRun.isSelected()) {
+        if (jCheckBoxAutoRun.isSelected()) {
             calculate();
         }
     }//GEN-LAST:event_iterationsStateChanged
+
+    private void axiomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_axiomActionPerformed
+        //
+    }//GEN-LAST:event_axiomActionPerformed
+
+    private void rule2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rule2ActionPerformed
+      //
+    }//GEN-LAST:event_rule2ActionPerformed
+
+    private void axiomCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_axiomCaretUpdate
+        if (jCheckBoxAutoRun.isSelected()) {
+            calculate();
+        }
+    }//GEN-LAST:event_axiomCaretUpdate
+
+    private void rule1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_rule1CaretUpdate
+        if (jCheckBoxAutoRun.isSelected()) {
+            calculate();
+        }
+    }//GEN-LAST:event_rule1CaretUpdate
+
+    private void rule2CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_rule2CaretUpdate
+        if (jCheckBoxAutoRun.isSelected()) {
+            calculate();
+        }
+    }//GEN-LAST:event_rule2CaretUpdate
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
