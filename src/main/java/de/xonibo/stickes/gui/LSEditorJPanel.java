@@ -87,31 +87,16 @@ public class LSEditorJPanel extends javax.swing.JPanel {
                 axiomCaretUpdate(evt);
             }
         });
-        axiom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                axiomActionPerformed(evt);
-            }
-        });
 
         rule1.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 rule1CaretUpdate(evt);
             }
         });
-        rule1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rule1ActionPerformed(evt);
-            }
-        });
 
         rule2.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 rule2CaretUpdate(evt);
-            }
-        });
-        rule2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rule2ActionPerformed(evt);
             }
         });
 
@@ -126,11 +111,6 @@ public class LSEditorJPanel extends javax.swing.JPanel {
         angle.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 angleStateChanged(evt);
-            }
-        });
-        angle.addVetoableChangeListener(new java.beans.VetoableChangeListener() {
-            public void vetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {
-                angleVetoableChange(evt);
             }
         });
 
@@ -157,20 +137,10 @@ public class LSEditorJPanel extends javax.swing.JPanel {
                 rule4CaretUpdate(evt);
             }
         });
-        rule4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rule4ActionPerformed(evt);
-            }
-        });
 
         rule3.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 rule3CaretUpdate(evt);
-            }
-        });
-        rule3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rule3ActionPerformed(evt);
             }
         });
 
@@ -191,11 +161,6 @@ public class LSEditorJPanel extends javax.swing.JPanel {
         startangle.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 startangleStateChanged(evt);
-            }
-        });
-        startangle.addVetoableChangeListener(new java.beans.VetoableChangeListener() {
-            public void vetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {
-                startangleVetoableChange(evt);
             }
         });
 
@@ -302,11 +267,6 @@ public class LSEditorJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rule1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rule1ActionPerformed
-//cc
-
-    }//GEN-LAST:event_rule1ActionPerformed
-
     private void jButtonRunLSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRunLSActionPerformed
         calculate();
     }//GEN-LAST:event_jButtonRunLSActionPerformed
@@ -337,10 +297,6 @@ public class LSEditorJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jCheckBoxAutoRunActionPerformed
 
-    private void angleVetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {//GEN-FIRST:event_angleVetoableChange
-        //do something
-    }//GEN-LAST:event_angleVetoableChange
-
     private void angleStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_angleStateChanged
         if (jCheckBoxAutoRun.isSelected()) {
             calculate();
@@ -352,14 +308,6 @@ public class LSEditorJPanel extends javax.swing.JPanel {
             calculate();
         }
     }//GEN-LAST:event_iterationsStateChanged
-
-    private void axiomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_axiomActionPerformed
-        //
-    }//GEN-LAST:event_axiomActionPerformed
-
-    private void rule2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rule2ActionPerformed
-        //
-    }//GEN-LAST:event_rule2ActionPerformed
 
     private void axiomCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_axiomCaretUpdate
         if (jCheckBoxAutoRun.isSelected()) {
@@ -391,20 +339,12 @@ public class LSEditorJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_rule4CaretUpdate
 
-    private void rule4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rule4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rule4ActionPerformed
-
     private void rule3CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_rule3CaretUpdate
         if (jCheckBoxAutoRun.isSelected()) {
             calculate();
         }
 
     }//GEN-LAST:event_rule3CaretUpdate
-
-    private void rule3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rule3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rule3ActionPerformed
 
     private void jComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxItemStateChanged
         if (evt.getStateChange() == ItemEvent.DESELECTED) {
@@ -420,6 +360,7 @@ public class LSEditorJPanel extends javax.swing.JPanel {
         axiom.setText(e.getAxiom());
         stepwidth.setValue(e.getStepwidth());
         angle.setValue(e.getAngle());
+        startangle.setValue(e.getStartangle());
         iterations.setValue(e.getIterations());
         rule4.setText("");
         rule3.setText("");
@@ -448,10 +389,6 @@ public class LSEditorJPanel extends javax.swing.JPanel {
             calculate();
         }
     }//GEN-LAST:event_startangleStateChanged
-
-    private void startangleVetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {//GEN-FIRST:event_startangleVetoableChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_startangleVetoableChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
