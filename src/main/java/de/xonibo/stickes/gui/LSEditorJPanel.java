@@ -5,6 +5,7 @@ import de.xonibo.stickes.gui.ls.LSList;
 import de.xonibo.stickes.StichData;
 import de.xonibo.stickes.assemble.LindenmayerTurtle;
 import de.xonibo.stickes.stiches.Plain;
+import java.awt.event.ItemEvent;
 import java.awt.geom.GeneralPath;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ public class LSEditorJPanel extends javax.swing.JPanel {
     public LSEditorJPanel(Visual visual) {
         this.visual = visual;
         initComponents();
-        listDefaults();
+        init();
     }
 
     /**
@@ -39,7 +40,6 @@ public class LSEditorJPanel extends javax.swing.JPanel {
         jLabelRule1 = new javax.swing.JLabel();
         jLabelRule2 = new javax.swing.JLabel();
         jButtonDeleteLS = new javax.swing.JButton();
-        jButtonAddRule = new javax.swing.JButton();
         jButtonRunLS = new javax.swing.JButton();
         jButtonSaveLS = new javax.swing.JButton();
         axiom = new javax.swing.JTextField();
@@ -56,6 +56,8 @@ public class LSEditorJPanel extends javax.swing.JPanel {
         jLabelRule4 = new javax.swing.JLabel();
         jComboBox = new javax.swing.JComboBox();
         jLabel = new javax.swing.JLabel();
+        jLabelStartAngle = new javax.swing.JLabel();
+        startangle = new javax.swing.JSpinner();
 
         jLabelAngle.setText("Angle");
 
@@ -70,14 +72,6 @@ public class LSEditorJPanel extends javax.swing.JPanel {
         jButtonDeleteLS.setText("Delete");
         jButtonDeleteLS.setEnabled(false);
 
-        jButtonAddRule.setText("add Rule");
-        jButtonAddRule.setEnabled(false);
-        jButtonAddRule.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAddRuleActionPerformed(evt);
-            }
-        });
-
         jButtonRunLS.setText("Run");
         jButtonRunLS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,7 +82,6 @@ public class LSEditorJPanel extends javax.swing.JPanel {
         jButtonSaveLS.setText("Save");
         jButtonSaveLS.setEnabled(false);
 
-        axiom.setText("FX");
         axiom.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 axiomCaretUpdate(evt);
@@ -100,7 +93,6 @@ public class LSEditorJPanel extends javax.swing.JPanel {
             }
         });
 
-        rule1.setText("X=X+YF+");
         rule1.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 rule1CaretUpdate(evt);
@@ -112,7 +104,6 @@ public class LSEditorJPanel extends javax.swing.JPanel {
             }
         });
 
-        rule2.setText("Y=-FX-Y");
         rule2.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 rule2CaretUpdate(evt);
@@ -194,6 +185,20 @@ public class LSEditorJPanel extends javax.swing.JPanel {
 
         jLabel.setText("Name");
 
+        jLabelStartAngle.setText("Startangle");
+
+        startangle.setModel(new javax.swing.SpinnerNumberModel(90, -180, 180, 1));
+        startangle.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                startangleStateChanged(evt);
+            }
+        });
+        startangle.addVetoableChangeListener(new java.beans.VetoableChangeListener() {
+            public void vetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {
+                startangleVetoableChange(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -203,44 +208,49 @@ public class LSEditorJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonRunLS)
-                                .addGap(18, 18, 18)
-                                .addComponent(jCheckBoxAutoRun))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabelIterations)
-                                        .addComponent(jLabelAngle)
-                                        .addComponent(jLabelRule3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabelRule2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabelRule4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(jLabelRule1)
-                                    .addComponent(jLabelAxiom, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelStepWidth)
-                                    .addComponent(jLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jComboBox, 0, 241, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButtonSaveLS)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButtonDeleteLS))
-                                    .addComponent(rule2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rule3, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rule1, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rule4, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(axiom, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(angle, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(iterations, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(stepwidth, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabelIterations)
+                                .addComponent(jLabelAngle)
+                                .addComponent(jLabelRule3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelRule2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelRule4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabelRule1)
+                            .addComponent(jLabelAxiom, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButtonAddRule, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jButtonRunLS)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBox, 0, 338, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonSaveLS)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonDeleteLS))
+                    .addComponent(rule2)
+                    .addComponent(rule3)
+                    .addComponent(rule1)
+                    .addComponent(rule4)
+                    .addComponent(axiom)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBoxAutoRun)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(iterations, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(angle, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(39, 39, 39)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelStepWidth)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(stepwidth, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelStartAngle)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(startangle, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -255,16 +265,16 @@ public class LSEditorJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelAngle)
-                    .addComponent(angle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(angle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelStartAngle)
+                    .addComponent(startangle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelIterations)
-                    .addComponent(iterations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(stepwidth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelStepWidth))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(iterations, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelStepWidth)
+                    .addComponent(stepwidth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(axiom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelAxiom))
@@ -284,19 +294,13 @@ public class LSEditorJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rule4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelRule4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonAddRule)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonRunLS)
                     .addComponent(jCheckBoxAutoRun))
-                .addGap(16, 16, 16))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonAddRuleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddRuleActionPerformed
-// xxxx
-    }//GEN-LAST:event_jButtonAddRuleActionPerformed
 
     private void rule1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rule1ActionPerformed
 //cc
@@ -310,13 +314,14 @@ public class LSEditorJPanel extends javax.swing.JPanel {
     public void calculate() {
         int it = (int) iterations.getValue();
         int a = (int) angle.getValue();
+        int sa = (int) startangle.getValue();
         int sw = (int) stepwidth.getValue();
         List<String> rules = new ArrayList<>();
         rules.add(rule1.getText());
         rules.add(rule2.getText());
         rules.add(rule3.getText());
         rules.add(rule4.getText());
-        LindenmayerTurtle ls = new LindenmayerTurtle(it, a, sw, axiom.getText(), rules);
+        LindenmayerTurtle ls = new LindenmayerTurtle(sa, it, a, sw, axiom.getText(), rules);
 
         GeneralPath path = ls.getPath();
         StichData sd = new Plain(path).toStichData();
@@ -327,6 +332,9 @@ public class LSEditorJPanel extends javax.swing.JPanel {
 
     private void jCheckBoxAutoRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxAutoRunActionPerformed
         jButtonRunLS.setEnabled(!jCheckBoxAutoRun.isSelected());
+        if (jCheckBoxAutoRun.isSelected()) {
+            calculate();
+        }
     }//GEN-LAST:event_jCheckBoxAutoRunActionPerformed
 
     private void angleVetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {//GEN-FIRST:event_angleVetoableChange
@@ -399,6 +407,9 @@ public class LSEditorJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_rule3ActionPerformed
 
     private void jComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxItemStateChanged
+        if (evt.getStateChange() == ItemEvent.DESELECTED) {
+            return;
+        }
         LSEntry e = lslist.getSelectedItem();
         String[] rules = e.getRules();
         if (rules.length == 0) {
@@ -432,12 +443,21 @@ public class LSEditorJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jComboBoxItemStateChanged
 
+    private void startangleStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_startangleStateChanged
+        if (jCheckBoxAutoRun.isSelected()) {
+            calculate();
+        }
+    }//GEN-LAST:event_startangleStateChanged
+
+    private void startangleVetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {//GEN-FIRST:event_startangleVetoableChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_startangleVetoableChange
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner angle;
     private javax.swing.JTextField axiom;
     private javax.swing.JSpinner iterations;
-    private javax.swing.JButton jButtonAddRule;
     private javax.swing.JButton jButtonDeleteLS;
     private javax.swing.JButton jButtonRunLS;
     private javax.swing.JButton jButtonSaveLS;
@@ -451,31 +471,49 @@ public class LSEditorJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelRule2;
     private javax.swing.JLabel jLabelRule3;
     private javax.swing.JLabel jLabelRule4;
+    private javax.swing.JLabel jLabelStartAngle;
     private javax.swing.JLabel jLabelStepWidth;
     private javax.swing.JTextField rule1;
     private javax.swing.JTextField rule2;
     private javax.swing.JTextField rule3;
     private javax.swing.JTextField rule4;
+    private javax.swing.JSpinner startangle;
     private javax.swing.JSpinner stepwidth;
     // End of variables declaration//GEN-END:variables
 
-    private void listDefaults() {
-        lslist.addElement(new LSEntry("dragon", 11, 90, 10, "FX", "X=X+YF+", "Y=-FX-Y"));
-        lslist.addElement(new LSEntry("fractal-plant", 6, 25, 10, "X", "X=C0F-[C2[X]+C3X]+C1F[C3+FX]-X", "F=FF"));
-        lslist.addElement(new LSEntry("hilbert", 6, 90, 10, "X", "X=-YF+XFX+FY-", "Y=+XF-YFY-FX+"));
-        lslist.addElement(new LSEntry("joined-cross", 3, 90, 10, "XYXYXYX+XYXYXYX+XYXYXYX+XYXYXYX", "F=", "X=FX+FX+FXFY-FY-", "Y=+FX+FXFY-FY-FY"));
-        lslist.addElement(new LSEntry("kevs-pond-weed", 5, 27, 10, "F", "F=C0FF[C1-F++F][C2+F--F]C3++F--F"));
-        lslist.addElement(new LSEntry("kevs-tree", 4, 22, 10, "F", "F=C0FF-[C1-F+F+F]+[C2+F-F-F]"));
-        lslist.addElement(new LSEntry("kevs-wisply-tree", 5, 25, 10, "FX", "F=C0FF-[C1-F+F]+[C2+F-F]", "X=C0FF+[C1+F]+[C3-F]"));
-        lslist.addElement(new LSEntry("koch-curve", 6, 90, 4, "-F", "F=F+F-F-F+F"));
-        lslist.addElement(new LSEntry("koch-snowflake", 4, 60, 10, "F++F++F", "F=F-F++F-F", "X=FF"));
-        lslist.addElement(new LSEntry("lace", 7, 30, 10, "W", "W=+++X--F--ZFX+", "X=---W++F++YFW-", "Y=+ZFX--F--Z+++", "Z=-YFW++F++Y---"));
-        lslist.addElement(new LSEntry("penrose-tiling", 5, 36, 10, "[7]++[7]++[7]++[7]++[7]", "6=81++91----71[-81----61]++", "7=+81--91[---61--71]+", "8=-61++71[+++81++91]-", "9=--81++++61[+91++++71]--71", "1="));
-        lslist.addElement(new LSEntry("plesant-error", 4, 72, 8, "F-F-F-F-F", "F=F-F++F+F-F-F"));
-        lslist.addElement(new LSEntry("sierpinski-arrowtip", 7, 60, 10, "A", "A=B-A-B", "B=A+B+A"));
-        lslist.addElement(new LSEntry("sierpinski-carpet", 4, 90, 10, "F", "F=F+F-F-F-G+F+F+F-F", "G=GGG"));
-        lslist.addElement(new LSEntry("sierpinski-median", 8, 45, 10, "L--F--L--F", "L=+R-F-R+", "R=-L+F+L-"));
-        lslist.addElement(new LSEntry("sierpinski-triangle", 6, 120, 10, "F-G-G", "F=F-G+F+G-F", "G=GG"));
+    private void init() {
+        final LSEntry defaultEntry = new LSEntry("dragon", -90, 11, 90, 10, "FX", "X=X+YF+", "Y=-FX-Y");
+        lslist.addElement(defaultEntry);
+        lslist.addElement(new LSEntry("fractal-plant", -90, 6, 25, 10, "X", "X=C0F-[C2[X]+C3X]+C1F[C3+FX]-X", "F=FF"));
+        lslist.addElement(new LSEntry("hilbert", -90, 6, 90, 10, "X", "X=-YF+XFX+FY-", "Y=+XF-YFY-FX+"));
+        lslist.addElement(new LSEntry("joined-cross", -90, 3, 90, 10, "XYXYXYX+XYXYXYX+XYXYXYX+XYXYXYX", "F=", "X=FX+FX+FXFY-FY-", "Y=+FX+FXFY-FY-FY"));
+        lslist.addElement(new LSEntry("kevs-pond-weed", -90, 5, 27, 10, "F", "F=C0FF[C1-F++F][C2+F--F]C3++F--F"));
+        lslist.addElement(new LSEntry("kevs-tree", -90, 4, 22, 10, "F", "F=C0FF-[C1-F+F+F]+[C2+F-F-F]"));
+        lslist.addElement(new LSEntry("kevs-wisply-tree", -90, 5, 25, 10, "FX", "F=C0FF-[C1-F+F]+[C2+F-F]", "X=C0FF+[C1+F]+[C3-F]"));
+        lslist.addElement(new LSEntry("koch-curve", -90, 6, 90, 4, "-F", "F=F+F-F-F+F"));
+        lslist.addElement(new LSEntry("koch-snowflake", -90, 4, 60, 10, "F++F++F", "F=F-F++F-F", "X=FF"));
+        lslist.addElement(new LSEntry("lace", -90, 7, 30, 10, "W", "W=+++X--F--ZFX+", "X=---W++F++YFW-", "Y=+ZFX--F--Z+++", "Z=-YFW++F++Y---"));
+        lslist.addElement(new LSEntry("penrose-tiling", -90, 5, 36, 10, "[7]++[7]++[7]++[7]++[7]", "6=81++91----71[-81----61]++", "7=+81--91[---61--71]+", "8=-61++71[+++81++91]-", "9=--81++++61[+91++++71]--71", "1="));
+        lslist.addElement(new LSEntry("plesant-error", -90, 4, 72, 8, "F-F-F-F-F", "F=F-F++F+F-F-F"));
+        lslist.addElement(new LSEntry("sierpinski-arrowtip", -90, 7, 60, 10, "A", "A=B-A-B", "B=A+B+A"));
+        lslist.addElement(new LSEntry("sierpinski-carpet", -90, 4, 90, 10, "F", "F=F+F-F-F-G+F+F+F-F", "G=GGG"));
+        lslist.addElement(new LSEntry("sierpinski-median", -90, 8, 45, 10, "L--F--L--F", "L=+R-F-R+", "R=-L+F+L-"));
+        lslist.addElement(new LSEntry("sierpinski-triangle", -90, 6, 120, 10, "F-G-G", "F=F-G+F+G-F", "G=GG"));
         jComboBox.setModel(lslist);
+        startangle.setValue(defaultEntry.getStartangle());
+        angle.setValue(defaultEntry.getAngle());
+        stepwidth.setValue(defaultEntry.getStepwidth());
+        axiom.setText(defaultEntry.getAxiom());
+        final String[] rules = defaultEntry.getRules();
+        switch (rules.length) {
+            case 4:
+                rule4.setText(defaultEntry.getRules()[3]);
+            case 3:
+                rule3.setText(defaultEntry.getRules()[2]);
+            case 2:
+                rule2.setText(defaultEntry.getRules()[1]);
+            case 1:
+                rule1.setText(defaultEntry.getRules()[0]);
+        }
     }
 }

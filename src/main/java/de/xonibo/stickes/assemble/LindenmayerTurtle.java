@@ -1,7 +1,6 @@
 package de.xonibo.stickes.assemble;
 
 import java.awt.Point;
-import java.text.ParseException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -27,8 +26,8 @@ public class LindenmayerTurtle extends Turtle {
         iterate("-F", 4);
     }
 
-    public LindenmayerTurtle(int iterations, double angle, int stepwidth, String axiom, List<String> newinstructions) {
-        super(0, 0, -90);
+    public LindenmayerTurtle(double startangle, int iterations, double angle, int stepwidth, String axiom, List<String> newinstructions) {
+        super(0, 0, startangle);
         rulemap = createMap(newinstructions);
         lsangle = angle;
         lsstep = stepwidth;
@@ -37,8 +36,8 @@ public class LindenmayerTurtle extends Turtle {
         iterate(axiom, iterations);
     }
 
-    public LindenmayerTurtle(int iterations, double angle, int stepwidth, String axiom, String... newinstructions) {
-        super(0, 0, -90);
+    public LindenmayerTurtle(double startangle, int iterations, double angle, int stepwidth, String axiom, String... newinstructions) {
+        super(0, 0, startangle);
         rulemap = createMap(Arrays.asList(newinstructions));
         lsangle = angle;
         lsstep = stepwidth;

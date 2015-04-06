@@ -4,15 +4,17 @@ public class LSEntry {
 
     final private String name;
     final private int iterations;
+    final private int startangle;
     final private int angle;
     final private int stepwidth;
     final private String axiom;
     final private String[] rules;
 
-    public LSEntry(String name, int iterations, int angle, int stepwidth, String axiom, String... rules) {
+    public LSEntry(String name, int startangle, int iterations, int angle, int stepwidth, String axiom, String... rules) {
         this.name = name;
         this.iterations = iterations;
         this.angle = angle;
+        this.startangle=startangle;
         this.stepwidth = stepwidth;
         this.axiom = axiom;
         this.rules = rules;
@@ -28,6 +30,10 @@ public class LSEntry {
 
     public String getAxiom() {
         return axiom;
+    }
+
+    public int getStartangle() {
+        return startangle;
     }
 
     public int getIterations() {

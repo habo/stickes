@@ -16,62 +16,69 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jButtonRunLS" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jCheckBoxAutoRun" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jLabelIterations" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelAngle" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabelRule3" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabelRule2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabelRule4" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jLabelIterations" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabelAngle" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabelRule3" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLabelRule2" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLabelRule4" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Component id="jLabelRule1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelAxiom" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
-                                  <Component id="jLabelStepWidth" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jComboBox" pref="241" max="32767" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jButtonSaveLS" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jButtonDeleteLS" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="rule2" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="rule3" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="rule1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="rule4" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="axiom" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="angle" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
-                                          <Component id="iterations" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
-                                          <Component id="stepwidth" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
+                          <Component id="jLabelRule1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelAxiom" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
+                          <Component id="jLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButtonAddRule" max="32767" attributes="0"/>
+                      <Component id="jButtonRunLS" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jComboBox" pref="338" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonSaveLS" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonDeleteLS" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="rule2" alignment="0" max="32767" attributes="0"/>
+                  <Component id="rule3" alignment="0" max="32767" attributes="0"/>
+                  <Component id="rule1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="rule4" alignment="0" max="32767" attributes="0"/>
+                  <Component id="axiom" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jCheckBoxAutoRun" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="iterations" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                                  <Component id="angle" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabelStepWidth" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="stepwidth" min="-2" pref="65" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabelStartAngle" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="startangle" min="-2" pref="65" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -89,18 +96,17 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabelAngle" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="angle" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelStartAngle" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="startangle" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabelIterations" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="iterations" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="stepwidth" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelStepWidth" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="stepwidth" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="axiom" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelAxiom" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -125,14 +131,12 @@
                   <Component id="rule4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelRule4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jButtonAddRule" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButtonRunLS" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jCheckBoxAutoRun" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -169,15 +173,6 @@
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonAddRule">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="add Rule"/>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAddRuleActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="jButtonRunLS">
       <Properties>
         <Property name="text" type="java.lang.String" value="Run"/>
@@ -193,27 +188,18 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="axiom">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="FX"/>
-      </Properties>
       <Events>
         <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="axiomCaretUpdate"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="axiomActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="rule1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="X=X+YF+"/>
-      </Properties>
       <Events>
         <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="rule1CaretUpdate"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rule1ActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="rule2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Y=-FX-Y"/>
-      </Properties>
       <Events>
         <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="rule2CaretUpdate"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rule2ActionPerformed"/>
@@ -301,6 +287,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Name"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelStartAngle">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Startangle"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="startangle">
+      <Properties>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="90" maximum="180" minimum="-180" numberType="java.lang.Integer" stepSize="1" type="number"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="startangleStateChanged"/>
+        <EventHandler event="vetoableChange" listener="java.beans.VetoableChangeListener" parameters="java.beans.PropertyChangeEvent" handler="startangleVetoableChange"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="LSEditorJPanel_startangle"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

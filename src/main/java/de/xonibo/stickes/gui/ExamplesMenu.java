@@ -191,7 +191,7 @@ public class ExamplesMenu implements ActionListener {
             final String customized_Dialog = "Customized Dialog";
             switch (this) {
                 case Lace:
-                    LindenmayerTurtle ls = new LindenmayerTurtle(7, 30, 10, "W", "W=+++X--F--ZFX+", "X=---W++F++YFW-", "Y=+ZFX--F--Z+++", "Z=-YFW++F++Y---");
+                    LindenmayerTurtle ls = new LindenmayerTurtle(-90, 7, 30, 10, "W", "W=+++X--F--ZFX+", "X=---W++F++YFW-", "Y=+ZFX--F--Z+++", "Z=-YFW++F++Y---");
                     return ls.getPath();
                 case Smile:
                     return getSmileShape(150, 150, 150);
