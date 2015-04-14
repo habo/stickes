@@ -4,6 +4,7 @@ import de.xonibo.stickes.gui.ls.LSEntry;
 import de.xonibo.stickes.gui.ls.LSList;
 import de.xonibo.stickes.StichData;
 import de.xonibo.stickes.assemble.LindenmayerTurtle;
+import de.xonibo.stickes.gui.ls.LSEntryComparator;
 import de.xonibo.stickes.stiches.Plain;
 import java.awt.event.ItemEvent;
 import java.awt.geom.GeneralPath;
@@ -17,7 +18,7 @@ import javax.swing.JOptionPane;
 public class LSEditorJPanel extends javax.swing.JPanel {
 
     private final Visual visual;
-    private final LSList lslist = new LSList();
+    private final LSList lslist = new LSList(new LSEntryComparator());
 
     public LSEditorJPanel() {
         this.visual = null;
@@ -432,7 +433,19 @@ public class LSEditorJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonSaveLSActionPerformed
 
     private void jButtonDeleteLSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteLSActionPerformed
-        jComboBox.removeItemAt(jComboBox.getSelectedIndex());
+        int answer = JOptionPane.showConfirmDialog(this, "Do you really want to delete", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (answer != 0) {
+            return;
+        }
+        int i = jComboBox.getSelectedIndex();
+        lslist.getElementAt(i);
+        jComboBox.removeItemAt(i);
+        try {
+            lslist.save();
+        } catch (IOException ex) {
+            Logger.getLogger(LSEditorJPanel.class.getName()).log(Level.SEVERE, "Error during Delete", ex);
+        }
+
     }//GEN-LAST:event_jButtonDeleteLSActionPerformed
 
 

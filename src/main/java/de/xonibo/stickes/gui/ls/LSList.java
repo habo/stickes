@@ -6,11 +6,19 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Comparator;
 import javax.swing.DefaultComboBoxModel;
 
 public class LSList extends DefaultComboBoxModel<LSEntry> {
 
     private String filename = "lslist.obj";
+
+    private Comparator comparator = null;
+
+    public LSList(LSEntryComparator comparator) {
+        super();
+        this.comparator = comparator;
+    }
 
     @Override
     public LSEntry getSelectedItem() {
@@ -29,7 +37,42 @@ public class LSList extends DefaultComboBoxModel<LSEntry> {
         if (containsName(entry.getName())) {
             return;
         }
-        super.addElement(entry);
+        addElement(entry);
+    }
+
+    @Override
+    public final void addElement(LSEntry element) {
+        insertElementAt(element, 0);
+    }
+
+    @Override
+    public void insertElementAt(LSEntry entry, int index) {
+        if (entry == null) {
+            return;
+        }
+        int size = getSize();
+
+        for (index = 0; index < size; index++) {
+            if (comparator != null) {
+                LSEntry o = getElementAt(index);
+
+                if (comparator.compare(o, entry) > 0) {
+                    break;
+                }
+            } else {
+                Comparable c = (Comparable) getElementAt(index);
+
+                if (c.compareTo(entry) > 0) {
+                    break;
+                }
+            }
+        }
+
+        super.insertElementAt(entry, index);
+
+        if (index == 0) {
+            setSelectedItem(entry);
+        }
     }
 
     public void load() throws FileNotFoundException, IOException, ClassNotFoundException {
