@@ -170,8 +170,10 @@
     <Component class="javax.swing.JButton" name="jButtonDeleteLS">
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete"/>
-        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDeleteLSActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonRunLS">
       <Properties>
@@ -184,8 +186,10 @@
     <Component class="javax.swing.JButton" name="jButtonSaveLS">
       <Properties>
         <Property name="text" type="java.lang.String" value="Save"/>
-        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSaveLSActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="axiom">
       <Events>

@@ -1,6 +1,8 @@
 package de.xonibo.stickes.gui.ls;
 
-public class LSEntry {
+import java.io.Serializable;
+
+public class LSEntry implements Serializable {
 
     final private String name;
     final private int iterations;
@@ -14,7 +16,7 @@ public class LSEntry {
         this.name = name;
         this.iterations = iterations;
         this.angle = angle;
-        this.startangle=startangle;
+        this.startangle = startangle;
         this.stepwidth = stepwidth;
         this.axiom = axiom;
         this.rules = rules;

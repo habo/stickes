@@ -7,8 +7,12 @@ import de.xonibo.stickes.assemble.LindenmayerTurtle;
 import de.xonibo.stickes.stiches.Plain;
 import java.awt.event.ItemEvent;
 import java.awt.geom.GeneralPath;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class LSEditorJPanel extends javax.swing.JPanel {
 
@@ -70,7 +74,11 @@ public class LSEditorJPanel extends javax.swing.JPanel {
         jLabelRule2.setText("Rule2");
 
         jButtonDeleteLS.setText("Delete");
-        jButtonDeleteLS.setEnabled(false);
+        jButtonDeleteLS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteLSActionPerformed(evt);
+            }
+        });
 
         jButtonRunLS.setText("Run");
         jButtonRunLS.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +88,11 @@ public class LSEditorJPanel extends javax.swing.JPanel {
         });
 
         jButtonSaveLS.setText("Save");
-        jButtonSaveLS.setEnabled(false);
+        jButtonSaveLS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveLSActionPerformed(evt);
+            }
+        });
 
         axiom.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
@@ -368,7 +380,7 @@ public class LSEditorJPanel extends javax.swing.JPanel {
         rule1.setText("");
         switch (rules.length) {
             default:
-                System.out.println("too many rules");
+                Logger.getLogger(LSEditorJPanel.class.getName()).log(Level.WARNING, "Too many rules found, rule " + rules.length + " at LS: " + e.getName());
             case 4:
                 rule4.setText(rules[3]);
             case 3:
@@ -389,6 +401,39 @@ public class LSEditorJPanel extends javax.swing.JPanel {
             calculate();
         }
     }//GEN-LAST:event_startangleStateChanged
+
+    private void jButtonSaveLSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveLSActionPerformed
+        String newname = null;
+        String msg = "Please enter name of Lindenmayer-System.";
+        boolean lookingForName = true;
+        while (lookingForName) {
+            newname = JOptionPane.showInputDialog(msg);
+            if (newname == null) {
+                // exit, as we just want no action
+                return;
+            }
+            if (newname.trim().length() < 3) {
+                msg = "Name is to short";
+                continue;
+            }
+            if (lslist.containsName(newname)) {
+                msg = "Name already exists, please enter a new one.";
+                continue;
+            }
+            lookingForName = false;
+        }
+        LSEntry e = new LSEntry(newname, (int) startangle.getValue(), (int) iterations.getValue(), (int) angle.getValue(), (int) stepwidth.getValue(), axiom.getText(), rule1.getText(), rule2.getText(), rule3.getText(), rule4.getText());
+        lslist.addElement(e);
+        try {
+            lslist.save();
+        } catch (IOException ex) {
+            JOptionPane.showConfirmDialog(this, "Error 23");
+        }
+    }//GEN-LAST:event_jButtonSaveLSActionPerformed
+
+    private void jButtonDeleteLSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteLSActionPerformed
+        jComboBox.removeItemAt(jComboBox.getSelectedIndex());
+    }//GEN-LAST:event_jButtonDeleteLSActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -419,23 +464,33 @@ public class LSEditorJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void init() {
-        final LSEntry defaultEntry = new LSEntry("dragon", -90, 11, 90, 10, "FX", "X=X+YF+", "Y=-FX-Y");
-        lslist.addElement(defaultEntry);
-        lslist.addElement(new LSEntry("fractal-plant", -90, 6, 25, 10, "X", "X=C0F-[C2[X]+C3X]+C1F[C3+FX]-X", "F=FF"));
-        lslist.addElement(new LSEntry("hilbert", -90, 6, 90, 10, "X", "X=-YF+XFX+FY-", "Y=+XF-YFY-FX+"));
-        lslist.addElement(new LSEntry("joined-cross", -90, 3, 90, 10, "XYXYXYX+XYXYXYX+XYXYXYX+XYXYXYX", "F=", "X=FX+FX+FXFY-FY-", "Y=+FX+FXFY-FY-FY"));
-        lslist.addElement(new LSEntry("kevs-pond-weed", -90, 5, 27, 10, "F", "F=C0FF[C1-F++F][C2+F--F]C3++F--F"));
-        lslist.addElement(new LSEntry("kevs-tree", -90, 4, 22, 10, "F", "F=C0FF-[C1-F+F+F]+[C2+F-F-F]"));
-        lslist.addElement(new LSEntry("kevs-wisply-tree", -90, 5, 25, 10, "FX", "F=C0FF-[C1-F+F]+[C2+F-F]", "X=C0FF+[C1+F]+[C3-F]"));
-        lslist.addElement(new LSEntry("koch-curve", -90, 6, 90, 4, "-F", "F=F+F-F-F+F"));
-        lslist.addElement(new LSEntry("koch-snowflake", -90, 4, 60, 10, "F++F++F", "F=F-F++F-F", "X=FF"));
-        lslist.addElement(new LSEntry("lace", -90, 7, 30, 10, "W", "W=+++X--F--ZFX+", "X=---W++F++YFW-", "Y=+ZFX--F--Z+++", "Z=-YFW++F++Y---"));
-        lslist.addElement(new LSEntry("penrose-tiling", -90, 5, 36, 10, "[7]++[7]++[7]++[7]++[7]", "6=81++91----71[-81----61]++", "7=+81--91[---61--71]+", "8=-61++71[+++81++91]-", "9=--81++++61[+91++++71]--71", "1="));
-        lslist.addElement(new LSEntry("plesant-error", -90, 4, 72, 8, "F-F-F-F-F", "F=F-F++F+F-F-F"));
-        lslist.addElement(new LSEntry("sierpinski-arrowtip", -90, 7, 60, 10, "A", "A=B-A-B", "B=A+B+A"));
-        lslist.addElement(new LSEntry("sierpinski-carpet", -90, 4, 90, 10, "F", "F=F+F-F-F-G+F+F+F-F", "G=GGG"));
-        lslist.addElement(new LSEntry("sierpinski-median", -90, 8, 45, 10, "L--F--L--F", "L=+R-F-R+", "R=-L+F+L-"));
-        lslist.addElement(new LSEntry("sierpinski-triangle", -90, 6, 120, 10, "F-G-G", "F=F-G+F+G-F", "G=GG"));
+
+        try {
+            lslist.load();
+        } catch (IOException | ClassNotFoundException ex) {
+            Logger.getLogger(LSEditorJPanel.class.getName()).log(Level.CONFIG, "Load default Lindenmayer Systems from " + lslist.getFilename());
+        }
+        lslist.addElementIfNotExists(new LSEntry("dragon", -90, 11, 90, 10, "FX", "X=X+YF+", "Y=-FX-Y"));
+        lslist.addElementIfNotExists(new LSEntry("fractal-plant", -90, 6, 25, 10, "X", "X=C0F-[C2[X]+C3X]+C1F[C3+FX]-X", "F=FF"));
+        lslist.addElementIfNotExists(new LSEntry("hilbert", -90, 6, 90, 10, "X", "X=-YF+XFX+FY-", "Y=+XF-YFY-FX+"));
+        lslist.addElementIfNotExists(new LSEntry("joined-cross", -90, 3, 90, 10, "XYXYXYX+XYXYXYX+XYXYXYX+XYXYXYX", "F=", "X=FX+FX+FXFY-FY-", "Y=+FX+FXFY-FY-FY"));
+        lslist.addElementIfNotExists(new LSEntry("kevs-pond-weed", -90, 5, 27, 10, "F", "F=C0FF[C1-F++F][C2+F--F]C3++F--F"));
+        lslist.addElementIfNotExists(new LSEntry("kevs-tree", -90, 4, 22, 10, "F", "F=C0FF-[C1-F+F+F]+[C2+F-F-F]"));
+        lslist.addElementIfNotExists(new LSEntry("kevs-wisply-tree", -90, 5, 25, 10, "FX", "F=C0FF-[C1-F+F]+[C2+F-F]", "X=C0FF+[C1+F]+[C3-F]"));
+        lslist.addElementIfNotExists(new LSEntry("koch-curve", -90, 6, 90, 4, "-F", "F=F+F-F-F+F"));
+        lslist.addElementIfNotExists(new LSEntry("koch-snowflake", -90, 4, 60, 10, "F++F++F", "F=F-F++F-F", "X=FF"));
+        lslist.addElementIfNotExists(new LSEntry("lace", -90, 7, 30, 10, "W", "W=+++X--F--ZFX+", "X=---W++F++YFW-", "Y=+ZFX--F--Z+++", "Z=-YFW++F++Y---"));
+        lslist.addElementIfNotExists(new LSEntry("penrose-tiling", -90, 5, 36, 10, "[7]++[7]++[7]++[7]++[7]", "6=81++91----71[-81----61]++", "7=+81--91[---61--71]+", "8=-61++71[+++81++91]-", "9=--81++++61[+91++++71]--71", "1="));
+        lslist.addElementIfNotExists(new LSEntry("plesant-error", -90, 4, 72, 8, "F-F-F-F-F", "F=F-F++F+F-F-F"));
+        lslist.addElementIfNotExists(new LSEntry("sierpinski-arrowtip", -90, 7, 60, 10, "A", "A=B-A-B", "B=A+B+A"));
+        lslist.addElementIfNotExists(new LSEntry("sierpinski-carpet", -90, 4, 90, 10, "F", "F=F+F-F-F-G+F+F+F-F", "G=GGG"));
+        lslist.addElementIfNotExists(new LSEntry("sierpinski-median", -90, 8, 45, 10, "L--F--L--F", "L=+R-F-R+", "R=-L+F+L-"));
+        lslist.addElementIfNotExists(new LSEntry("sierpinski-triangle", -90, 6, 120, 10, "F-G-G", "F=F-G+F+G-F", "G=GG"));
+
+        if (lslist.getSize() == 0) {
+            return;
+        }
+        final LSEntry defaultEntry = lslist.getElementAt(0);
         jComboBox.setModel(lslist);
         startangle.setValue(defaultEntry.getStartangle());
         angle.setValue(defaultEntry.getAngle());
