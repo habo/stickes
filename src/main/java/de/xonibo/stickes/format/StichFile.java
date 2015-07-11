@@ -8,9 +8,7 @@ import java.io.FilenameFilter;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ServiceLoader;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -114,7 +112,7 @@ public class StichFile {
     public StichData load(File file) throws Exception {
         for (Class<StichFileLoad> cs : getLoadableClasses()) {
             StichFileLoad loader = cs.newInstance();
-            if (file.getName().endsWith(loader.getExtention())) {
+            if (file.getName().toLowerCase().endsWith(loader.getExtention().toLowerCase())) {
                 return loader.load(new FileInputStream(file));
             }
         }
