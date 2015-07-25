@@ -14,9 +14,10 @@ public class StichData extends ArrayList<Stich> implements StickesSource {
     List<Color> colorInternal = new ArrayList<>();
 
     public String getInfo() {
-        final int size = size();
-        final int x = getMaxCornerX() / 10;
-        final int y = getMaxCornerY() / 10;
+        StichData tmp = this.normalize();
+        final int size = tmp.size();
+        final int x = tmp.getMaxCornerX() / 10;
+        final int y = tmp.getMaxCornerY() / 10;
         return String.format("Stiches: %d, x: %dmm, y: %dmm", size, x, y);
     }
 
